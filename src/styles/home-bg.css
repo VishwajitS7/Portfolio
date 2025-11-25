@@ -1,0 +1,206 @@
+/* Variables for light/dark themes */
+:root {
+  --bg-0: #041025;
+  --bg-1: #071226;
+  --line-a: rgba(96,165,250,0.12);
+  --line-b: rgba(148,163,184,0.08);
+  --line-c: rgba(99,102,241,0.05);
+  --noise-opacity: 0.06;
+}
+:root[data-theme="light"] {
+  --bg-0: #f8fafc;
+  --bg-1: #eef2ff;
+  --line-a: rgba(99,102,241,0.12);
+  --line-b: rgba(96,165,250,0.08);
+  --line-c: rgba(16,185,129,0.06);
+  --noise-opacity: 0.035;
+}
+
+/* Root container */
+.home-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+/* Animated gradient layer */
+.bg-gradient-layer {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(0, 119, 255, 0.25), transparent 60%),
+              radial-gradient(circle at bottom right, rgba(147, 51, 234, 0.18), transparent 70%);
+  animation: gradientMove 20s ease-in-out infinite alternate;
+  z-index: 1;
+}
+
+@keyframes gradientMove {
+  from {
+    transform: scale(1) translate(0, 0);
+  }
+  to {
+    transform: scale(1.2) translate(2%, -2%);
+  }
+}
+
+/* Grid SVG layer */
+.grid-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: 0.55;
+  mix-blend-mode: overlay;
+}
+
+/* vignette / fading edges */
+.vignette-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle, transparent 60%, rgba(0,0,0,0.6));
+  z-index: 3;
+}
+
+/* small floating particles */
+.particles {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  filter: blur(1px);
+  animation: floatParticle 6s linear infinite;
+}
+
+@keyframes floatParticle {
+  0% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.4;
+  }
+}
+
+/* container */
+.home-bg-advanced {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--bg-0), var(--bg-1));
+  isolation: isolate;
+  --mx: 0;
+  --my: 0;
+}
+
+/* lines layers share styles and are stacked */
+.lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+/* individual path animation to create motion along x */
+.lines .p1,
+.lines .p2,
+.lines .p3 {
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/* subtle horizontal drift via CSS keyframes */
+@keyframes drift-a {
+  0% { transform: translateX(-8%); opacity: 1; }
+  50% { transform: translateX(8%); opacity: 0.95; }
+  100% { transform: translateX(-8%); opacity: 1; }
+}
+@keyframes drift-b {
+  0% { transform: translateX(6%); opacity: 1; }
+  50% { transform: translateX(-6%); opacity: 0.92; }
+  100% { transform: translateX(6%); opacity: 1; }
+}
+@keyframes drift-c {
+  0% { transform: translateX(-10%); opacity: 1; }
+  50% { transform: translateX(10%); opacity: 0.9; }
+  100% { transform: translateX(-10%); opacity: 1; }
+}
+
+/* apply animations and perspective transform that use pointer parallax */
+.layer-a { animation: drift-a 18s ease-in-out infinite; transform: translateZ(-60px) scale(1.06) rotateX(8deg); opacity: 0.95; }
+.layer-b { animation: drift-b 14s ease-in-out infinite; transform: translateZ(-30px) scale(1.02) rotateX(6deg); opacity: 0.9; }
+.layer-c { animation: drift-c 22s ease-in-out infinite; transform: translateZ(0px) scale(1) rotateX(3deg); opacity: 0.85; }
+
+/* parallax influenced tilt using CSS vars set by JS */
+.home-bg-advanced .lines.layer-a { transform: translate3d(calc(var(--mx) * -12px), calc(var(--my) * -8px), 0) perspective(800px) rotateX(calc(var(--my) * 4deg)); }
+.home-bg-advanced .lines.layer-b { transform: translate3d(calc(var(--mx) * -8px), calc(var(--my) * -6px), 0) perspective(700px) rotateX(calc(var(--my) * 3deg)); }
+.home-bg-advanced .lines.layer-c { transform: translate3d(calc(var(--mx) * -4px), calc(var(--my) * -3px), 0) perspective(600px) rotateX(calc(var(--my) * 2deg)); }
+
+/* noise overlay - uses feTurbulence filter */
+.noise-layer {
+  position: absolute;
+  inset: 0;
+  opacity: var(--noise-opacity);
+  mix-blend-mode: overlay;
+  background-image: linear-gradient(transparent, rgba(0,0,0,0)), repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0 1px, transparent 1px 10px);
+  pointer-events: none;
+}
+
+/* floating parallax elements */
+.float-wrap { position: absolute; inset: 0; pointer-events: none; }
+.float-dot {
+  position: absolute;
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  border-radius: 9999px;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.6);
+  backdrop-filter: blur(2px);
+  transform: translate3d(0,0,0);
+  transition: transform 220ms cubic-bezier(.16,.8,.24,1);
+}
+
+/* theme toggle button (small, sits over background but pointer-events enabled) */
+.theme-toggle {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  z-index: 6;
+  pointer-events: auto;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: #ffffff;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+}
+
+/* reduce visuals on very small screens */
+@media (max-width: 640px) {
+  .layer-a, .layer-b, .layer-c { opacity: 0.55; }
+  .noise-layer { opacity: calc(var(--noise-opacity) * 0.8); }
+  .theme-toggle { right: 10px; top: 10px; width: 34px; height: 34px; }
+}

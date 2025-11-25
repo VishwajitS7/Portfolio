@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" aria-hidden>
+  <rect width="64" height="64" rx="8" fill="#08112A"/>
+  <g transform="translate(10,14)" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2" y="2" width="40" height="20" rx="3" fill="#061028" stroke="#F97316"/>
+    <circle cx="8" cy="12" r="3" fill="#F97316"/>
+    <circle cx="32" cy="12" r="3" fill="#F97316"/>
+    <path d="M11 12 L29 12" stroke="#F97316"/>
+  </g>
+  <text x="32" y="56" font-family="Inter, Roboto, sans-serif" font-size="7.5" fill="#fff" text-anchor="middle">REST API</text>
+</svg>

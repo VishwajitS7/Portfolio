@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" aria-hidden>
+  <rect width="64" height="64" rx="8" fill="#111827"/>
+  <g transform="translate(8,8)" fill="none" stroke="#60A5FA" stroke-width="2" stroke-linecap="round">
+    <circle cx="12" cy="12" r="6" fill="#0b1220"/>
+    <circle cx="36" cy="12" r="6" fill="#0b1220"/>
+    <circle cx="24" cy="36" r="6" fill="#0b1220"/>
+    <path d="M16 16 L28 16 L24 30" stroke="#60A5FA"/>
+  </g>
+  <text x="32" y="56" font-family="Inter, Roboto, sans-serif" font-size="7.5" fill="#fff" text-anchor="middle">DSA · C++</text>
+</svg>

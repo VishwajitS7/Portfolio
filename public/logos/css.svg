@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" aria-hidden>
+  <rect width="64" height="64" rx="8" fill="#0B76C8"/>
+  <g transform="translate(8,12)">
+    <path d="M8 0 L40 0 L36 28 L20 32 L8 28 Z" fill="#0A66A6"/>
+    <text x="24" y="22" font-family="Inter, Roboto, sans-serif" font-size="10" fill="#fff" text-anchor="middle" font-weight="700">CSS</text>
+  </g>
+</svg>
