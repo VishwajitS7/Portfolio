@@ -1,7 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" aria-hidden>
-  <rect width="64" height="64" rx="8" fill="#0B76C8"/>
-  <g transform="translate(8,12)">
-    <path d="M8 0 L40 0 L36 28 L20 32 L8 28 Z" fill="#0A66A6"/>
-    <text x="24" y="22" font-family="Inter, Roboto, sans-serif" font-size="10" fill="#fff" text-anchor="middle" font-weight="700">CSS</text>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <path d="M4.5 3L6 19.5L12 21.5L18 19.5L19.5 3H4.5Z" fill="#1572B6"/>
+  <path d="M12 5.5V19.5L17.5 18L18.5 5.5H12Z" fill="#33A9DC"/>
+  <path d="M8.5 8.5H17.5L17 10.5H9L9.5 13H16.5L16 15H9.5L10 18L12 18.5L12.5 15.5H16.5L17.5 8.5H8.5Z" fill="white"/>
 </svg>
