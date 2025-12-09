@@ -84,11 +84,11 @@ export default function Skills() {
     {
       label: "Stack DNA",
       value: "Java · Spring · React",
-      detail: "Built 10+ end-to-end products with this trio.",
+      detail: "Built 5+ end-to-end products with this trio.",
     },
     {
       label: "Delivery Speed",
-      value: "2 week sprints",
+      value: "4 week sprints",
       detail: "Comfortable shipping increments with CI feedback loops.",
     },
     {
@@ -100,15 +100,17 @@ export default function Skills() {
 
   return (
     <section id="skills" className="scroll-mt-20 min-h-screen px-4 sm:px-6 md:px-16 py-16 md:py-20">
-      <p className="text-sm uppercase tracking-[0.4em] copy-muted mb-3">Capabilities</p>
-      <h2 className="section-heading text-4xl md:text-5xl font-bold gradient-text accent-divider">
-        <span className="heading-icon text-sm">&lt;/&gt;</span>
-        Technical Skill Matrix
-      </h2>
-      <p className="text-gray-400 max-w-2xl mt-8 mb-12">
-        A blend of frontend craft, backend rigor, and product-minded delivery. Each category highlights the toolkit I rely on
-        the most in production.
-      </p>
+      <div className="text-center mb-12">
+        <p className="text-sm uppercase tracking-[0.4em] copy-muted mb-3">Capabilities</p>
+        <h2 className="section-heading text-4xl md:text-5xl font-bold gradient-text accent-divider">
+          <span className="heading-icon text-sm">&lt;/&gt;</span>
+          Technical Skill Matrix
+        </h2>
+        <p className="text-gray-400 max-w-2xl mx-auto mt-8">
+          A blend of frontend craft, backend rigor, and product-minded delivery. Each category highlights the toolkit I rely on
+          the most in production.
+        </p>
+      </div>
 
       <AnimatedSection direction="up" delay={100}>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-12">
@@ -167,11 +169,12 @@ function SkillCategory({ icon, title, skills = [], summary }) {
           <div className="grid grid-cols-3 gap-4 place-items-start">
             {skills.map((s, idx) => (
               <div key={idx} className="flex flex-col items-center gap-2 text-center w-full">
-                <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center p-1 shadow-[0_10px_25px_rgba(6,11,24,0.4)] transition-transform duration-200 hover:scale-110 flex-shrink-0 mx-auto">
+                <div className="w-12 h-12 rounded-lg flex items-center justify-center p-1 transition-transform duration-200 hover:scale-110 flex-shrink-0 mx-auto">
                   <img
                     src={s.icon}
                     alt={s.name}
                     className="w-full h-full object-contain"
+                    style={{ filter: 'none' }}
                     onError={(e) => {
                       // hide broken image; you can fallback to emoji if desired
                       e.currentTarget.style.display = "none";

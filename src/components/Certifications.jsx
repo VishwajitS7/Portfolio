@@ -12,14 +12,16 @@ export default function Certifications() {
 
   return (
     <section id="certs" className="scroll-mt-20 min-h-screen px-4 sm:px-6 md:px-16 py-16 md:py-20">
-      <h2 className="section-heading text-4xl font-bold gradient-text accent-divider">
-        <span className="heading-icon text-sm">&lt;/&gt;</span>
-        Certifications
-      </h2>
-      <p className="copy-muted max-w-3xl mt-8 mb-12">
-        Curated learning paths that sharpened architecture decisions, API craft, and cross-functional collaboration. Each
-        credential keeps my toolkit current across backend, frontend, and product thinking.
-      </p>
+      <div className="text-center mb-12">
+        <h2 className="section-heading text-4xl font-bold gradient-text accent-divider">
+          <span className="heading-icon text-sm">&lt;/&gt;</span>
+          Certifications
+        </h2>
+        <p className="copy-muted max-w-3xl mx-auto mt-8">
+          Curated learning paths that sharpened architecture decisions, API craft, and cross-functional collaboration. Each
+          credential keeps my toolkit current across backend, frontend, and product thinking.
+        </p>
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {certs.map((c, i) => (

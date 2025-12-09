@@ -42,15 +42,17 @@ export default function Achievements() {
 
   return (
     <section id="achievements" className="scroll-mt-20 min-h-screen px-4 sm:px-6 md:px-16 py-16 md:py-20">
-      <p className="text-sm uppercase tracking-[0.4em] copy-muted mb-3">Milestones</p>
-      <h2 className="section-heading text-4xl font-bold gradient-text accent-divider">
-        <span className="heading-icon text-sm">★</span>
-        Impact & Achievements
-      </h2>
-      <p className="copy-muted max-w-3xl mt-8 mb-12">
-        A mix of technical accolades and cross-disciplinary wins that shape how I solve problems, collaborate, and keep teams
-        moving forward.
-      </p>
+      <div className="text-center mb-12">
+        <p className="text-sm uppercase tracking-[0.4em] copy-muted mb-3">Milestones</p>
+        <h2 className="section-heading text-4xl font-bold gradient-text accent-divider">
+          <span className="heading-icon text-sm">★</span>
+          Impact & Achievements
+        </h2>
+        <p className="copy-muted max-w-3xl mx-auto mt-8">
+          A mix of technical accolades and cross-disciplinary wins that shape how I solve problems, collaborate, and keep teams
+          moving forward.
+        </p>
+      </div>
 
       <div className="relative mt-8">
         <div className="absolute left-6 md:left-8 top-0 bottom-0 w-px bg-primary/30" />
