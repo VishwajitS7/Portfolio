@@ -158,7 +158,7 @@ export default function Contact({ isLight = false, onShowToast }) {
             href="mailto:vishu31103@gmail.com"
             className="contact-button-outline group sheen-card rounded-2xl p-6 text-center transition-all duration-300 hover:scale-105"
           >
-            <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
+            <div className="w-14 h-14 rounded-xl bg-primary/5 border border-primary/30 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/10 group-hover:border-primary/50 transition-colors">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"

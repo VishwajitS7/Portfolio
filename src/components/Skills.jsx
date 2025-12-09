@@ -39,7 +39,6 @@ export default function Skills() {
         { name: "MongoDB", icon: "/logos/mongodb.svg", level: "Advanced" },
         { name: "MySQL", icon: "/logos/mysql.svg", level: "Advanced" },
         { name: "Firebase", icon: "/logos/firebase.svg", level: "Proficient" },
-        { name: "Redis", icon: "/logos/redis.svg", level: "Proficient" },
       ],
     },
     {
