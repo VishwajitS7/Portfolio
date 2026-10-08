@@ -34,7 +34,6 @@ export default function HomeBackground() {
       });
     };
 
-    const el = containerRef.current;
     window.addEventListener("pointermove", handleMove, { passive: true });
     window.addEventListener("touchmove", handleMove, { passive: true });
 

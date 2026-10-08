@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { CheckCircle2, AlertCircle, Info, X } from "lucide-react";
 
 export default function Toast({ message, type = "success", isVisible, onClose }) {
   useEffect(() => {
@@ -12,98 +13,45 @@ export default function Toast({ message, type = "success", isVisible, onClose })
 
   if (!isVisible) return null;
 
-  const bgColor =
-    type === "success"
-      ? "bg-gradient-to-r from-green-500/20 to-emerald-500/20 border-green-500/30"
-      : type === "error"
-      ? "bg-gradient-to-r from-red-500/20 to-rose-500/20 border-red-500/30"
-      : "bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border-blue-500/30";
-
-  const iconColor =
-    type === "success"
-      ? "text-green-400"
-      : type === "error"
-      ? "text-red-400"
-      : "text-blue-400";
+  const isSuccess = type === "success";
+  const isError = type === "error";
 
   return (
     <div
-      className={`fixed top-24 right-6 z-50 min-w-[300px] max-w-md p-4 rounded-xl border backdrop-blur-xl shadow-2xl transition-all duration-300 ${
-        isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full"
-      } ${bgColor}`}
+      className={`fixed top-20 right-6 z-50 min-w-[320px] max-w-md p-4 rounded-2xl linear-card !bg-[var(--bg-card)]/95 backdrop-blur-2xl border shadow-2xl transition-all duration-300 animate-in fade-in slide-in-from-top-4 ${
+        isSuccess
+          ? "border-emerald-500/40"
+          : isError
+          ? "border-red-500/40"
+          : "border-indigo-500/40"
+      }`}
     >
       <div className="flex items-start gap-3">
-        <div className={`flex-shrink-0 ${iconColor}`}>
-          {type === "success" ? (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-6 h-6"
-            >
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-              <polyline points="22 4 12 14.01 9 11.01" />
-            </svg>
-          ) : type === "error" ? (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-6 h-6"
-            >
-              <circle cx="12" cy="12" r="10" />
-              <line x1="12" y1="8" x2="12" y2="12" />
-              <line x1="12" y1="16" x2="12.01" y2="16" />
-            </svg>
+        <div className="flex-shrink-0 mt-0.5">
+          {isSuccess ? (
+            <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+          ) : isError ? (
+            <AlertCircle className="w-5 h-5 text-red-400" />
           ) : (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-6 h-6"
-            >
-              <circle cx="12" cy="12" r="10" />
-              <line x1="12" y1="16" x2="12" y2="12" />
-              <line x1="12" y1="8" x2="12.01" y2="8" />
-            </svg>
+            <Info className="w-5 h-5 text-indigo-400" />
           )}
         </div>
-        <div className="flex-1">
-          <p className="text-sm font-medium text-white">{message}</p>
+        <div className="flex-1 min-w-0">
+          <p className="text-xs font-mono-code uppercase font-semibold text-[var(--text-muted)]">
+            {isSuccess ? "Notification" : isError ? "Action Required" : "Notice"}
+          </p>
+          <p className="text-sm font-medium text-[var(--text-primary)] mt-0.5 leading-snug">
+            {message}
+          </p>
         </div>
         <button
           onClick={onClose}
-          className="flex-shrink-0 text-white/60 hover:text-white transition-colors"
+          className="flex-shrink-0 p-1 text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors cursor-pointer"
           aria-label="Close notification"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="w-5 h-5"
-          >
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
+          <X className="w-4 h-4" />
         </button>
       </div>
     </div>
   );
 }
-

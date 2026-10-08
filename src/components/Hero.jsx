@@ -1,5 +1,17 @@
 import { useState } from "react";
 import AnimatedSection from "./AnimatedSection";
+import { 
+  ArrowRight, 
+  Download, 
+  Mail, 
+  Terminal, 
+  Code2, 
+  Layers, 
+  Cpu, 
+  Sparkles,
+  ExternalLink
+} from "lucide-react";
+import { Github, Linkedin } from "./Icons";
 
 export default function Hero() {
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -7,132 +19,240 @@ export default function Hero() {
   return (
     <section
       id="intro"
-      className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-12 lg:px-16 pt-24 pb-16 md:pt-24 md:py-24 overflow-hidden scroll-mt-20"
+      className="relative min-h-[92vh] flex items-center justify-center px-4 sm:px-6 md:px-12 lg:px-16 pt-28 pb-16 md:pt-32 md:pb-24 overflow-hidden"
     >
-      <div className="absolute inset-0 pointer-events-none opacity-30">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-secondary/5 to-tertiary/5 blur-3xl" />
-      </div>
-
-      <div className="relative flex gap-16 flex-col lg:flex-row items-center w-full max-w-6xl mx-auto">
-        {/* Avatar + Status */}
-        <AnimatedSection direction="right" delay={100}>
-        <div className="flex flex-col items-center text-center">
-            <div className="relative w-36 h-36 sm:w-40 sm:h-40 md:w-48 md:h-48">
-              {!imageLoaded && (
-                <div className="absolute inset-0 w-36 h-36 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 animate-pulse" />
-              )}
-              <img
-                src="/profile.jpg"
-              alt="profile"
-                onLoad={() => setImageLoaded(true)}
-                className={`w-36 h-36 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-full border-2 border-white/10 object-cover shadow-lg transition-opacity duration-500 ${
-                  imageLoaded ? "opacity-100" : "opacity-0"
-                }`}
-            />
-          </div>
-
-          {/* Center the pill under the avatar by matching the wrapper width to avatar */}
-          <div className="flex justify-center items-center w-full mt-6">
-            <p className="hero-pill text-sm px-4 sm:px-5 py-2 rounded-full font-medium tracking-wide inline-flex items-center justify-center gap-2 whitespace-nowrap">
-              <span className="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
-              &lt;/&gt; Currently Building
-            </p>
-          </div>
-
-          <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 text-left w-full">
-            {[
-              { label: "Experience", value: "1 year" },
-              { label: "Projects", value: "3 shipped" },
-              { label: "Domains", value: "Java backend DevOps" },
-              { label: "Focus", value: "Fullstack Java and React." },
-            ].map((stat) => (
-              <div key={stat.label} className="metric-card rounded-xl px-4 py-3">
-                <p className="text-xs uppercase tracking-wide copy-muted">
-                  {stat.label}
-                </p>
-                <p className="text-lg font-semibold gradient-text">
-                  {stat.value}
-                </p>
+      <div className="relative max-w-6xl w-full mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          
+          {/* Left Column: Headline, Bio & Action Buttons (7 cols) */}
+          <div className="lg:col-span-7 flex flex-col items-start text-left z-10">
+            <AnimatedSection direction="up" delay={50}>
+              {/* Eyebrow Status Pill */}
+              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/25 text-xs font-medium text-indigo-400 mb-6 backdrop-blur-md">
+                <span className="beacon-dot" />
+                <span className="text-[12px] font-mono-code font-semibold">Java Fullstack Developer</span>
+                <span className="text-indigo-400/50">&middot;</span>
+                <span className="text-[11px] text-[var(--text-secondary)]">Open for Opportunities</span>
               </div>
-            ))}
-          </div>
-        </div>
-        </AnimatedSection>
+            </AnimatedSection>
 
-        {/* About Card */}
-        <AnimatedSection direction="left" delay={200}>
-        <div className="hero-card w-full max-w-2xl p-10 backdrop-blur-2xl">
-          <p className="text-sm copy-muted font-mono tracking-widest mb-3">
-            $ whoami
-          </p>
+            <AnimatedSection direction="up" delay={120}>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] text-[var(--text-primary)]">
+                Building robust backends with{" "}
+                <span className="text-gradient-electric block mt-1">
+                  modern React interfaces.
+                </span>
+              </h1>
+            </AnimatedSection>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text">Vishwajit Sutar</h1>
-          <h2 className="text-lg sm:text-xl md:text-2xl mt-3 copy-muted font-medium">
-            Java Fullstack Developer
-          </h2>
+            <AnimatedSection direction="up" delay={180}>
+              <p className="mt-6 text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed max-w-xl">
+                Hi, I'm <strong className="text-[var(--text-primary)] font-semibold">Vishwajit Sutar</strong>. 
+                I engineer dependable Java &amp; Spring Boot micro-services paired with lightning-fast React applications. 
+                Passionate about system architecture, API reliability, and crisp user experiences.
+              </p>
+            </AnimatedSection>
 
-          <p className="mt-6 copy-muted leading-relaxed">
-            I help teams ship reliable experiences by pairing robust Java backends with thoughtful React interfaces.
-            Translating ambiguous product ideas into measurable, resilient systems keeps me energized.
-          </p>
+            <AnimatedSection direction="up" delay={240}>
+              {/* Tech Stack Highlights */}
+              <div className="flex flex-wrap items-center gap-2 mt-6">
+                <span className="text-xs font-mono-code uppercase text-[var(--text-muted)] mr-2">Core:</span>
+                {[
+                  "Java 17+",
+                  "Spring Boot",
+                  "React 19",
+                  "Vite",
+                  "RESTful APIs",
+                  "MySQL",
+                  "MongoDB",
+                ].map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-2.5 py-1 rounded-lg text-xs font-mono-code bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-indigo-500/40 hover:text-[var(--text-primary)] transition"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </AnimatedSection>
 
-          <div className="flex flex-wrap gap-3 mt-6">
-            {["Java · Spring", "React · Vite", "Cloud-native", "DX obsessed"].map((tag) => (
-              <span key={tag} className="chip-gradient px-4 py-1 rounded-full text-xs tracking-wide">
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-4 mt-10">
-            <a
-              href="#contact"
-              className="hero-button-primary flex-1 text-center px-8 py-4 rounded-lg text-base font-semibold text-white transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
-            >
-              <span className="flex items-center justify-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="w-5 h-5"
+            <AnimatedSection direction="up" delay={300}>
+              {/* CTAs & Social Links */}
+              <div className="flex flex-wrap items-center gap-4 mt-8 w-full sm:w-auto">
+                <a
+                  href="#projects"
+                  className="btn-electric flex-1 sm:flex-none text-center cursor-pointer group"
                 >
-                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                </svg>
-                Let's collaborate
-              </span>
-            </a>
-            <a
-              href="/resume.pdf"
-              download="Vishwajit_Sutar_Resume.pdf"
-              className="hero-button-secondary flex-1 text-center px-8 py-4 rounded-lg text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="flex items-center justify-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="w-5 h-5"
+                  Explore Projects
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </a>
+
+                <a
+                  href="/resume.pdf"
+                  download="Vishwajit_Sutar_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-glass flex-1 sm:flex-none text-center cursor-pointer group"
                 >
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                  <polyline points="7 10 12 15 17 10" />
-                  <line x1="12" y1="15" x2="12" y2="3" />
-                </svg>
-                Download CV
-              </span>
-            </a>
+                  <Download className="w-4 h-4 text-indigo-400 transition-transform group-hover:-translate-y-0.5" />
+                  Download CV
+                </a>
+
+                {/* Social Quick-Actions */}
+                <div className="flex items-center gap-2 pt-2 sm:pt-0">
+                  <a
+                    href="https://github.com/VishwajitS7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-11 h-11 rounded-xl flex items-center justify-center border border-[var(--border-subtle)] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-elevated)] hover:border-indigo-500/40 text-[var(--text-secondary)] hover:text-white transition cursor-pointer"
+                    aria-label="GitHub profile"
+                  >
+                    <Github className="w-5 h-5" />
+                  </a>
+
+                  <a
+                    href="https://www.linkedin.com/in/vishwajit-sutar-03324b2b0/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-11 h-11 rounded-xl flex items-center justify-center border border-[var(--border-subtle)] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-elevated)] hover:border-indigo-500/40 text-[var(--text-secondary)] hover:text-white transition cursor-pointer"
+                    aria-label="LinkedIn profile"
+                  >
+                    <Linkedin className="w-5 h-5" />
+                  </a>
+
+                  <a
+                    href="mailto:vishu31103@gmail.com"
+                    className="w-11 h-11 rounded-xl flex items-center justify-center border border-[var(--border-subtle)] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-elevated)] hover:border-indigo-500/40 text-[var(--text-secondary)] hover:text-white transition cursor-pointer"
+                    aria-label="Email Vishwajit"
+                  >
+                    <Mail className="w-5 h-5" />
+                  </a>
+                </div>
+              </div>
+            </AnimatedSection>
           </div>
+
+          {/* Right Column: Linear Bento Developer Card (5 cols) */}
+          <div className="lg:col-span-5 w-full">
+            <AnimatedSection direction="left" delay={200}>
+              <div className="linear-card linear-card-accent p-6 sm:p-7 relative overflow-hidden group">
+                {/* Ambient glow in card background */}
+                <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+
+                {/* Card Terminal Header */}
+                <div className="flex items-center justify-between pb-4 mb-6 border-b border-[var(--border-subtle)] font-mono-code text-xs text-[var(--text-muted)]">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+                    <span className="ml-2 text-[11px] text-[var(--text-secondary)]">developer.config.json</span>
+                  </div>
+                  <span className="text-[10px] uppercase tracking-wider text-indigo-400">ONLINE</span>
+                </div>
+
+                {/* Profile Header within Bento */}
+                <div className="flex items-center gap-5 mb-6">
+                  <div className="relative flex-shrink-0">
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border-2 border-indigo-500/40 shadow-xl bg-indigo-950/40 p-0.5">
+                      {!imageLoaded && (
+                        <div className="w-full h-full rounded-xl bg-indigo-900/30 animate-pulse" />
+                      )}
+                      <img
+                        src="/profile.jpg"
+                        alt="Vishwajit Sutar"
+                        onLoad={() => setImageLoaded(true)}
+                        className={`w-full h-full object-cover rounded-xl transition-opacity duration-300 ${
+                          imageLoaded ? "opacity-100" : "opacity-0"
+                        }`}
+                      />
+                    </div>
+                    {/* Status badge on avatar */}
+                    <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[var(--bg-elevated)] border border-[var(--border-subtle)] flex items-center justify-center">
+                      <span className="w-2.5 h-2.5 rounded-full bg-[var(--accent-emerald)] animate-pulse" />
+                    </div>
+                  </div>
+
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-xl font-bold tracking-tight text-[var(--text-primary)] truncate">
+                      Vishwajit Sutar
+                    </h3>
+                    <p className="text-xs font-mono-code text-indigo-400 mt-0.5">
+                      @VishwajitS7 &middot; India
+                    </p>
+                    <p className="text-xs text-[var(--text-muted)] mt-1.5 flex items-center gap-1.5">
+                      <Cpu className="w-3.5 h-3.5 text-cyan-400" />
+                      B.Tech CSE &middot; CGPA: 9.24
+                    </p>
+                  </div>
+                </div>
+
+                {/* Live Code/Key Metrics Matrix */}
+                <div className="grid grid-cols-2 gap-3 mb-6">
+                  <div className="p-3.5 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-subtle)]">
+                    <p className="text-[10px] font-mono-code uppercase tracking-wider text-[var(--text-muted)]">
+                      Experience
+                    </p>
+                    <p className="text-lg font-bold text-[var(--text-primary)] mt-0.5">
+                      1+ Year
+                    </p>
+                    <p className="text-[11px] text-[var(--text-secondary)] mt-0.5">
+                      Backend &amp; React
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-subtle)]">
+                    <p className="text-[10px] font-mono-code uppercase tracking-wider text-[var(--text-muted)]">
+                      Academic Metric
+                    </p>
+                    <p className="text-lg font-bold text-indigo-400 mt-0.5">
+                      9.24 CGPA
+                    </p>
+                    <p className="text-[11px] text-[var(--text-secondary)] mt-0.5">
+                      Top Performer
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-subtle)]">
+                    <p className="text-[10px] font-mono-code uppercase tracking-wider text-[var(--text-muted)]">
+                      Leadership
+                    </p>
+                    <p className="text-lg font-bold text-cyan-400 mt-0.5">
+                      President
+                    </p>
+                    <p className="text-[11px] text-[var(--text-secondary)] mt-0.5">
+                      Oyster Kode Club
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-subtle)]">
+                    <p className="text-[10px] font-mono-code uppercase tracking-wider text-[var(--text-muted)]">
+                      Shipped Builds
+                    </p>
+                    <p className="text-lg font-bold text-emerald-400 mt-0.5">
+                      5+ Projects
+                    </p>
+                    <p className="text-[11px] text-[var(--text-secondary)] mt-0.5">
+                      Fullstack &amp; APIs
+                    </p>
+                  </div>
+                </div>
+
+                {/* Monospace Quick Status Console */}
+                <div className="p-3 rounded-xl bg-[var(--bg-surface)]/80 border border-[var(--border-subtle)] font-mono-code text-[11px]">
+                  <div className="flex items-center justify-between text-[var(--text-muted)]">
+                    <span>$ curl api.vishwajit.dev/status</span>
+                    <span className="text-emerald-400">200 OK</span>
+                  </div>
+                  <div className="text-[var(--text-secondary)] mt-1.5 text-[11px] leading-relaxed">
+                    &gt; "Ready to engineer high-velocity systems for your team."
+                  </div>
+                </div>
+
+              </div>
+            </AnimatedSection>
+          </div>
+
         </div>
-        </AnimatedSection>
       </div>
     </section>
   );

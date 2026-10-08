@@ -1,198 +1,195 @@
 import AnimatedSection from "./AnimatedSection";
+import { Server, Layout, Database, Wrench, Cloud, Binary, Sparkles, Layers } from "lucide-react";
 
 export default function Skills() {
   const categories = [
     {
-      id: "frontend",
-      icon: "/logos/frontend.svg",
-      title: "Frontend",
-      accent: "from-sky-500/70 via-cyan-400/60 to-teal-300/70",
-      summary: "Design systems, performant SPA architecture, accessibility-first builds.",
-      skills: [
-        { name: "HTML", icon: "/logos/html5.svg", level: "Expert" },
-        { name: "CSS", icon: "/logos/css.svg", level: "Expert" }, // updated
-        { name: "JavaScript", icon: "/logos/javascript.svg", level: "Advanced" },
-        { name: "React", icon: "/logos/react.svg", level: "Advanced" },
-        { name: "Vite", icon: "/logos/vite.svg", level: "Advanced" },
-      ],
-    },
-    {
       id: "backend",
-      icon: "/logos/backend.svg",
-      title: "Backend",
-      accent: "from-purple-500/60 via-pink-500/50 to-rose-400/60",
-      summary: "Robust REST APIs, async processing, observability, and scaling strategies.",
+      icon: Server,
+      title: "Backend & Systems",
+      badge: "Core Specialization",
+      accent: "from-indigo-500/20 to-indigo-500/5",
+      summary: "High-throughput RESTful services, transactional logic, and scalable architectures.",
       skills: [
-        { name: "Java", icon: "/logos/java.svg", level: "Expert" }, // updated
+        { name: "Java", icon: "/logos/java.svg", level: "Expert" },
         { name: "Spring Boot", icon: "/logos/spring.svg", level: "Advanced" },
         { name: "Node.js", icon: "/logos/nodejs.svg", level: "Advanced" },
         { name: "Express", icon: "/logos/express.svg", level: "Proficient" },
+        { name: "REST APIs", icon: "/logos/api.svg", level: "Advanced" },
+      ],
+    },
+    {
+      id: "frontend",
+      icon: Layout,
+      title: "Frontend Engineering",
+      badge: "Modern Web",
+      accent: "from-cyan-500/20 to-cyan-500/5",
+      summary: "Responsive, accessible, and fast Single Page Applications with clean component state.",
+      skills: [
+        { name: "React", icon: "/logos/react.svg", level: "Advanced" },
+        { name: "JavaScript", icon: "/logos/javascript.svg", level: "Advanced" },
+        { name: "Vite", icon: "/logos/vite.svg", level: "Advanced" },
+        { name: "HTML5", icon: "/logos/html5.svg", level: "Expert" },
+        { name: "CSS3", icon: "/logos/css.svg", level: "Expert" },
       ],
     },
     {
       id: "databases",
-      icon: "/logos/databases.svg",
-      title: "Databases",
-      accent: "from-emerald-400/70 via-lime-300/60 to-teal-400/70",
-      summary: "Polyglot persistence spanning relational, document, and in-memory stores.",
+      icon: Database,
+      title: "Databases & Storage",
+      badge: "Persistence",
+      accent: "from-emerald-500/20 to-emerald-500/5",
+      summary: "Relational modeling, document collections, schema design, and query optimization.",
       skills: [
-        { name: "MongoDB", icon: "/logos/mongodb.svg", level: "Advanced" },
         { name: "MySQL", icon: "/logos/mysql.svg", level: "Advanced" },
+        { name: "MongoDB", icon: "/logos/mongodb.svg", level: "Advanced" },
         { name: "Firebase", icon: "/logos/firebase.svg", level: "Proficient" },
       ],
     },
     {
-      id: "tools",
-      icon: "/logos/tools.svg",
-      title: "Tools & Platforms",
-      accent: "from-blue-500/60 via-indigo-400/50 to-purple-400/60",
-      summary: "Productivity stack for CI/CD, API testing, and collaborative delivery.",
+      id: "devops",
+      icon: Cloud,
+      title: "Cloud & Deployment",
+      badge: "Infrastructure",
+      accent: "from-sky-500/20 to-sky-500/5",
+      summary: "Continuous deployment workflows, environment configuration, and serverless hosting.",
       skills: [
-        { name: "Git", icon: "/logos/git.svg", level: "Expert" },
-        { name: "GitHub", icon: "/logos/github.svg", level: "Expert" },
-        { name: "Postman", icon: "/logos/postman.svg", level: "Advanced" },
-        { name: "VS Code", icon: "/logos/vscode.svg", level: "Expert" }, // updated
-      ],
-    },
-    {
-      id: "cloud",
-      icon: "/logos/cloud.svg",
-      title: "Cloud",
-      accent: "from-cyan-400/70 via-blue-400/60 to-slate-200/70",
-      summary: "Deployments on serverless and container platforms with monitoring hooks.",
-      skills: [
-        { name: "Render", icon: "/logos/render.svg", level: "Advanced" }, // updated
+        { name: "Render", icon: "/logos/render.svg", level: "Advanced" },
         { name: "Vercel", icon: "/logos/vercel.svg", level: "Advanced" },
         { name: "Netlify", icon: "/logos/netlify.svg", level: "Proficient" },
       ],
     },
     {
-      id: "other",
-      icon: "/logos/other.svg",
-      title: "Other Skills",
-      accent: "from-fuchsia-400/60 via-purple-400/60 to-sky-400/60",
-      summary: "Problem solving foundations, API standards, and disciplined code craft.",
+      id: "tools",
+      icon: Wrench,
+      title: "Engineering Tools",
+      badge: "Productivity",
+      accent: "from-violet-500/20 to-violet-500/5",
+      summary: "Version control hygiene, endpoint contract testing, and developer tooling.",
       skills: [
-        { name: "DSA in C++", icon: "/logos/dsa.svg", level: "Advanced" }, // updated
-        { name: "OOP Concepts", icon: "/logos/oop.svg", level: "Expert" }, // updated
-        { name: "REST API", icon: "/logos/api.svg", level: "Advanced" }, // updated
+        { name: "Git", icon: "/logos/git.svg", level: "Expert" },
+        { name: "GitHub", icon: "/logos/github.svg", level: "Expert" },
+        { name: "Postman", icon: "/logos/postman.svg", level: "Advanced" },
+        { name: "VS Code", icon: "/logos/vscode.svg", level: "Expert" },
+      ],
+    },
+    {
+      id: "cs",
+      icon: Binary,
+      title: "CS Foundations",
+      badge: "Problem Solving",
+      accent: "from-fuchsia-500/20 to-fuchsia-500/5",
+      summary: "Strong fundamentals in algorithmic complexity, memory management, and clean OOP design.",
+      skills: [
+        { name: "DSA in C++", icon: "/logos/dsa.svg", level: "Advanced" },
+        { name: "OOP Concepts", icon: "/logos/oop.svg", level: "Expert" },
       ],
     },
   ];
 
-  const highlightStats = [
-    {
-      label: "Stack DNA",
-      value: "Java · Spring · React",
-      detail: "Built 5+ end-to-end products with this trio.",
-    },
-    {
-      label: "Delivery Speed",
-      value: "4 week sprints",
-      detail: "Comfortable shipping increments with CI feedback loops.",
-    },
-    {
-      label: "Quality Focus",
-      value: "92% coverage",
-      detail: "Lean testing + observability to keep regressions low.",
-    },
-  ];
-
   return (
-    <section id="skills" className="scroll-mt-20 min-h-screen px-4 sm:px-6 md:px-16 py-16 md:py-20">
-      <div className="text-center mb-12">
-        <p className="text-sm uppercase tracking-[0.4em] copy-muted mb-3">Capabilities</p>
-        <h2 className="section-heading text-4xl md:text-5xl font-bold gradient-text accent-divider">
-          <span className="heading-icon text-sm">&lt;/&gt;</span>
-          Technical Skill Matrix
-        </h2>
-        <p className="text-gray-400 max-w-2xl mx-auto mt-8">
-          A blend of frontend craft, backend rigor, and product-minded delivery. Each category highlights the toolkit I rely on
-          the most in production.
-        </p>
-      </div>
+    <section id="skills" className="scroll-mt-24 px-4 sm:px-6 md:px-16 py-16 md:py-24">
+      <div className="max-w-6xl mx-auto">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <AnimatedSection direction="up" delay={50}>
+            <div className="section-tag">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>CAPABILITIES &amp; TECH STACK</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[var(--text-primary)]">
+              Technical Skill Matrix
+            </h2>
+            <p className="mt-4 text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed">
+              Engineered with a strong focus on backend reliability, modern frontend architecture, and disciplined developer tooling.
+            </p>
+          </AnimatedSection>
+        </div>
 
-      <AnimatedSection direction="up" delay={100}>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-12">
-          {highlightStats.map((item, idx) => (
-            <AnimatedSection key={item.label} direction="up" delay={idx * 100}>
-              <div className="sheen-card rounded-2xl p-5">
-            <p className="text-xs uppercase tracking-[0.3em] copy-muted">{item.label}</p>
-            <p className="text-2xl font-semibold gradient-text mt-3">{item.value}</p>
-            <p className="text-sm copy-muted mt-2">{item.detail}</p>
-          </div>
-            </AnimatedSection>
-        ))}
-      </div>
-      </AnimatedSection>
-
-      <AnimatedSection direction="up" delay={200}>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+        {/* Bento Grid Categories */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {categories.map((cat, idx) => (
-            <AnimatedSection key={cat.id} direction="up" delay={idx * 50} className="h-full">
-              <SkillCategory {...cat} />
+            <AnimatedSection key={cat.id} direction="up" delay={idx * 60} className="h-full">
+              <SkillCard {...cat} />
             </AnimatedSection>
-        ))}
+          ))}
+        </div>
+
       </div>
-      </AnimatedSection>
     </section>
   );
 }
 
-/* SkillCategory — show official logo before title and official skill logos */
-function SkillCategory({ icon, title, skills = [], summary }) {
-  const levelStyles = {
-    Expert: "bg-secondary/10 text-secondary border border-secondary/30",
-    Advanced: "bg-primary/10 text-primary border border-primary/30",
-    Proficient: "bg-secondary/8 text-secondary/80 border border-secondary/20",
+function SkillCard(props) {
+  const { title, badge, summary, skills = [] } = props;
+  const IconComponent = props.icon;
+  const levelBadge = {
+    Expert: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
+    Advanced: "text-indigo-400 bg-indigo-500/10 border-indigo-500/20",
+    Proficient: "text-cyan-400 bg-cyan-500/10 border-cyan-500/20",
   };
 
   return (
-    <div className="surface-panel rounded-xl overflow-hidden transition-all duration-300 ease-out hover:shadow-xl skill-card-vignette h-full flex flex-col">
-        {/* header bar with logo before title */}
-        <div className="surface-header px-5 py-4 border-b space-y-2 relative z-10 flex-shrink-0 min-h-[100px]">
+    <div className="linear-card p-6 h-full flex flex-col justify-between group hover:border-indigo-500/30">
+      <div>
+        {/* Card Header */}
+        <div className="flex items-center justify-between pb-4 mb-4 border-b border-[var(--border-subtle)]">
           <div className="flex items-center gap-3">
-            <img
-              src={icon}
-              alt={`${title} icon`}
-              className="w-6 h-6 object-contain flex-shrink-0"
-              onError={(e) => (e.currentTarget.style.display = "none")}
-            />
-            <h3 className="text-sm font-semibold tracking-wide flex-1">{title}</h3>
-            <span className="text-[11px] uppercase tracking-widest copy-muted flex-shrink-0">{skills.length} tools</span>
+            <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+              <IconComponent className="w-5 h-5" />
+            </div>
+            <div>
+              <h3 className="text-base font-bold text-[var(--text-primary)]">
+                {title}
+              </h3>
+              <span className="text-[11px] font-mono-code text-[var(--text-muted)]">
+                {skills.length} tools
+              </span>
+            </div>
           </div>
-          <p className="text-xs copy-muted leading-relaxed line-clamp-2">{summary}</p>
+          <span className="text-[10px] font-mono-code uppercase px-2.5 py-1 rounded-md bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-[var(--text-secondary)]">
+            {badge}
+          </span>
         </div>
 
-        {/* content: fixed height, grid of official logos, scrollable */}
-        <div className="p-5 max-h-48 overflow-y-auto scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent relative z-10">
-          <div className="grid grid-cols-3 gap-4 place-items-start">
-            {skills.map((s, idx) => (
-              <div key={idx} className="flex flex-col items-center gap-2 text-center w-full">
-                <div className="w-12 h-12 rounded-lg flex items-center justify-center p-1 transition-transform duration-200 hover:scale-110 flex-shrink-0 mx-auto">
-                  <img
-                    src={s.icon}
-                    alt={s.name}
-                    className="w-full h-full object-contain"
-                    style={{ filter: 'none' }}
-                    onError={(e) => {
-                      // hide broken image; you can fallback to emoji if desired
-                      e.currentTarget.style.display = "none";
-                    }}
-                  />
-                </div>
-                <div className="flex flex-col items-center gap-1 w-full">
-                  <p className="text-xs copy-muted truncate w-full px-1" title={s.name}>{s.name}</p>
-                  {s.level && (
-                    <span className={`text-[10px] px-2 py-0.5 rounded-full capitalize whitespace-nowrap ${levelStyles[s.level] || "bg-white/10 text-white/70 border border-white/10"}`}>
-                      {s.level}
-                    </span>
-                  )}
-                </div>
-              </div>
-            ))}
+        <p className="text-xs text-[var(--text-secondary)] leading-relaxed mb-6">
+          {summary}
+        </p>
+      </div>
+
+      {/* Skills Pill List (No nested scrollbars!) */}
+      <div className="grid grid-cols-2 gap-2.5 mt-auto pt-2">
+        {skills.map((skill, i) => (
+          <div
+            key={i}
+            className="flex items-center gap-2.5 p-2 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] hover:bg-[var(--bg-surface-elevated)] hover:border-indigo-500/30 transition-all"
+          >
+            <div className="w-7 h-7 rounded-lg bg-[var(--bg-elevated)] p-1 flex items-center justify-center flex-shrink-0">
+              <img
+                src={skill.icon}
+                alt={skill.name}
+                className="w-5 h-5 object-contain"
+                onError={(e) => {
+                  e.currentTarget.style.display = "none";
+                }}
+              />
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="text-xs font-semibold text-[var(--text-primary)] truncate">
+                {skill.name}
+              </p>
+              <span
+                className={`inline-block text-[9px] font-mono-code px-1.5 py-0.2 rounded border ${
+                  levelBadge[skill.level] || "text-[var(--text-muted)]"
+                }`}
+              >
+                {skill.level}
+              </span>
+            </div>
           </div>
-        </div>
+        ))}
+      </div>
     </div>
   );
 }

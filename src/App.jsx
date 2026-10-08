@@ -10,6 +10,7 @@ import Contact from "./components/Contact";
 import ProjectSection from "./components/ProjectSection";
 import ScrollToTop from "./components/ScrollToTop";
 import Toast from "./components/Toast";
+import Footer from "./components/Footer";
 
 export default function App() {
   const [theme, setTheme] = useState(() => {
@@ -29,7 +30,6 @@ export default function App() {
     localStorage.setItem("vs-portfolio-theme", nextTheme);
   }, [theme]);
 
-  const isLight = theme === "light";
   const toggleTheme = () => setTheme((prev) => (prev === "light" ? "dark" : "light"));
 
   const showToast = (message, type = "success") => {
@@ -41,11 +41,10 @@ export default function App() {
   };
 
   return (
-    <div
-      className={`relative min-h-screen leading-relaxed tracking-wide transition-colors duration-500 ${
-        isLight ? "text-[#1A1D27]" : "text-white"
-      }`}
-    >
+    <div className="relative min-h-screen text-[var(--text-primary)] transition-colors duration-300">
+      {/* Ambient background mesh and top glow */}
+      <div className="ambient-canvas" aria-hidden="true" />
+
       <Navbar theme={theme} onToggleTheme={toggleTheme} />
 
       {/* Sections */}
@@ -60,8 +59,11 @@ export default function App() {
       <ProjectSection />
 
       <Achievements />
-      <Contact isLight={isLight} onShowToast={showToast} />
+      <Contact onShowToast={showToast} />
       
+      {/* Footer */}
+      <Footer />
+
       {/* Scroll to Top Button */}
       <ScrollToTop theme={theme} />
       
