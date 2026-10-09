@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import { Sun, Moon, Menu, X, Terminal, Sparkles } from "lucide-react";
+import { Sun, Moon, Menu, X, Terminal } from "lucide-react";
 
 const navItems = [
-  { id: "intro", label: "Overview" },
-  { id: "skills", label: "Skills" },
-  { id: "projects", label: "Projects" },
-  { id: "certs", label: "Certifications" },
-  { id: "achievements", label: "Impact" },
-  { id: "contact", label: "Contact" },
+  { id: "intro", code: "01", label: "Overview" },
+  { id: "skills", code: "02", label: "Stack" },
+  { id: "projects", code: "03", label: "Builds" },
+  { id: "certs", code: "04", label: "Certs" },
+  { id: "achievements", code: "05", label: "Milestones" },
+  { id: "contact", code: "06", label: "Dispatch" },
 ];
 
 export default function Navbar({ theme = "dark", onToggleTheme = () => {} }) {
@@ -38,7 +38,7 @@ export default function Navbar({ theme = "dark", onToggleTheme = () => {} }) {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 90;
+      const offset = 80;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
 
@@ -54,32 +54,33 @@ export default function Navbar({ theme = "dark", onToggleTheme = () => {} }) {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-3 sm:pt-4 transition-all">
-      <nav className="w-full max-w-6xl mx-auto px-4 sm:px-6 py-2.5 rounded-2xl linear-card !bg-[var(--bg-card)]/90 backdrop-blur-2xl border border-[var(--border-subtle)] flex items-center justify-between shadow-2xl">
-        {/* Brand Logo */}
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[var(--bg-canvas)]/95 backdrop-blur-md border-b-2 border-[var(--border-color)]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+        
+        {/* Brand Terminal Mark */}
         <a
           href="#intro"
           onClick={(e) => {
             e.preventDefault();
             scrollToSection("intro");
           }}
-          className="group flex items-center gap-2.5 font-mono-code text-sm font-semibold tracking-tight transition-transform hover:scale-105"
+          className="group flex items-center gap-2.5 font-mono-code text-sm font-extrabold tracking-wider transition cursor-pointer"
         >
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 via-indigo-600 to-cyan-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/25">
-            <Terminal className="w-4 h-4" />
+          <div className="w-8 h-8 bg-[var(--accent-lime)] text-[#0C0D0E] border-2 border-[#0C0D0E] flex items-center justify-center font-black shadow-[2px_2px_0px_#FFFFFF] group-hover:translate-x-0.5 group-hover:translate-y-0.5 group-hover:shadow-none transition-all">
+            VS
           </div>
-          <div className="flex flex-col text-left">
-            <span className="text-sm font-bold tracking-tight text-[var(--text-primary)]">
-              Vishwajit<span className="text-indigo-400">.dev</span>
+          <div className="flex items-center gap-1.5">
+            <span className="font-extrabold text-[var(--text-main)] tracking-tight">
+              VISHWAJIT
             </span>
-            <span className="text-[10px] text-[var(--text-muted)] tracking-wider">
-              JAVA &middot; REACT
+            <span className="text-[var(--accent-lime)] font-mono-code text-xs font-bold">
+              // DEV
             </span>
           </div>
         </a>
 
         {/* Desktop Nav Items */}
-        <div className="hidden md:flex items-center gap-1 bg-[var(--bg-surface)] p-1 rounded-full border border-[var(--border-subtle)]">
+        <nav className="hidden md:flex items-center gap-1 font-mono-code text-xs">
           {navItems.map((item) => {
             const isActive = active === item.id;
             return (
@@ -89,84 +90,87 @@ export default function Navbar({ theme = "dark", onToggleTheme = () => {} }) {
                   setActive(item.id);
                   scrollToSection(item.id);
                 }}
-                className={`relative px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer ${
+                className={`px-3 py-1.5 font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
                   isActive
-                    ? "text-white bg-indigo-600 shadow-sm shadow-indigo-500/40"
-                    : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface-elevated)]"
+                    ? "bg-[var(--accent-lime)] text-[#0C0D0E] border border-[#0C0D0E] shadow-[2px_2px_0px_#FFFFFF]"
+                    : "text-[var(--text-muted)] hover:text-[var(--text-main)] hover:bg-[var(--bg-surface)]"
                 }`}
               >
-                {item.label}
+                <span className={isActive ? "text-[#0C0D0E]/60 font-medium" : "text-[var(--accent-lime)]"}>
+                  [{item.code}]
+                </span>
+                <span>{item.label}</span>
               </button>
             );
           })}
-        </div>
+        </nav>
 
-        {/* Right side controls: Availability status badge + Theme Toggle + Mobile menu */}
+        {/* Right Controls */}
         <div className="flex items-center gap-3">
-          {/* Live Status beacon - desktop */}
-          <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-xs text-[var(--text-secondary)] font-medium">
-            <span className="beacon-dot" />
-            <span className="text-[11px] text-[var(--accent-emerald)] font-semibold">Available for hire</span>
+          {/* Status Badge */}
+          <div className="hidden lg:flex items-center gap-2 px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-color)] font-mono-code text-[11px] text-[var(--text-muted)]">
+            <span className="w-2 h-2 rounded-full bg-[var(--accent-lime)] animate-ping" />
+            <span>STATUS: <strong className="text-[var(--accent-lime)]">AVAILABLE</strong></span>
           </div>
 
-          {/* Theme toggle button */}
+          {/* Theme Toggle Button */}
           <button
             type="button"
             onClick={onToggleTheme}
-            className="w-9 h-9 rounded-xl flex items-center justify-center border border-[var(--border-subtle)] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-elevated)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-all cursor-pointer"
+            className="w-9 h-9 flex items-center justify-center bg-[var(--bg-surface)] border-2 border-[var(--border-color)] hover:border-[var(--accent-lime)] text-[var(--text-main)] hover:text-[var(--accent-lime)] transition cursor-pointer shadow-[2px_2px_0px_var(--border-color)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none"
             aria-label="Toggle theme"
-            title={isLight ? "Switch to Dark Mode" : "Switch to Light Mode"}
+            title={isLight ? "Switch to Dark Theme" : "Switch to Light Theme"}
           >
             {isLight ? (
-              <Moon className="w-4 h-4 text-indigo-500" />
+              <Moon className="w-4 h-4" />
             ) : (
-              <Sun className="w-4 h-4 text-amber-400" />
+              <Sun className="w-4 h-4 text-[var(--accent-lime)]" />
             )}
           </button>
 
           {/* Mobile Menu Button */}
           <button
             type="button"
-            className="md:hidden w-9 h-9 rounded-xl flex items-center justify-center border border-[var(--border-subtle)] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-elevated)] text-[var(--text-primary)] transition cursor-pointer"
+            className="md:hidden w-9 h-9 flex items-center justify-center bg-[var(--bg-surface)] border-2 border-[var(--border-color)] text-[var(--text-main)] hover:border-[var(--accent-lime)] transition cursor-pointer"
             onClick={() => setOpen(!open)}
-            aria-label="Toggle navigation menu"
+            aria-label="Toggle menu"
           >
-            {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {open ? <X className="w-5 h-5 text-[var(--accent-lime)]" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
-      </nav>
 
-      {/* Mobile Menu Dropdown */}
+      </div>
+
+      {/* Mobile Drawer */}
       {open && (
-        <div className="md:hidden fixed top-20 left-4 right-4 z-50 p-4 rounded-2xl linear-card !bg-[var(--bg-card)]/95 backdrop-blur-2xl border border-[var(--border-subtle)] shadow-2xl animate-in fade-in slide-in-from-top-4 duration-200">
-          <div className="flex items-center justify-between pb-3 mb-3 border-b border-[var(--border-subtle)]">
-            <div className="flex items-center gap-2">
-              <span className="beacon-dot" />
-              <span className="text-xs text-[var(--accent-emerald)] font-medium">Available for roles</span>
-            </div>
-            <span className="text-[11px] font-mono-code text-[var(--text-muted)]">vishwa@portfolio</span>
+        <div className="md:hidden border-t-2 border-[var(--border-color)] bg-[var(--bg-canvas)] p-4 shadow-[0_8px_0px_#0C0D0E]">
+          <div className="flex items-center justify-between pb-3 mb-3 border-b border-[var(--border-color)] font-mono-code text-xs">
+            <span className="text-[var(--accent-lime)] font-bold">// NAVIGATION INDEX</span>
+            <span className="text-[var(--text-muted)]">[STATUS : READY]</span>
           </div>
-          <ul className="flex flex-col gap-1.5">
+          <div className="flex flex-col gap-2 font-mono-code text-xs">
             {navItems.map((item) => (
-              <li key={item.id}>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setActive(item.id);
-                    scrollToSection(item.id);
-                    setOpen(false);
-                  }}
-                  className={`w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium transition cursor-pointer ${
-                    active === item.id
-                      ? "text-white bg-indigo-600 font-semibold"
-                      : "text-[var(--text-secondary)] hover:bg-[var(--bg-surface)] hover:text-[var(--text-primary)]"
-                  }`}
-                >
-                  {item.label}
-                </button>
-              </li>
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => {
+                  setActive(item.id);
+                  scrollToSection(item.id);
+                  setOpen(false);
+                }}
+                className={`w-full text-left p-3 font-bold flex items-center justify-between border ${
+                  active === item.id
+                    ? "bg-[var(--accent-lime)] text-[#0C0D0E] border-[#0C0D0E] shadow-[3px_3px_0px_#FFFFFF]"
+                    : "border-[var(--border-color)] text-[var(--text-muted)] hover:bg-[var(--bg-surface)] hover:text-[var(--text-main)]"
+                }`}
+              >
+                <span>{item.label}</span>
+                <span className={active === item.id ? "text-black/60" : "text-[var(--accent-lime)]"}>
+                  [INDEX // {item.code}]
+                </span>
+              </button>
             ))}
-          </ul>
+          </div>
         </div>
       )}
     </header>

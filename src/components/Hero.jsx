@@ -3,13 +3,12 @@ import AnimatedSection from "./AnimatedSection";
 import { 
   ArrowRight, 
   Download, 
-  Mail, 
   Terminal, 
-  Code2, 
-  Layers, 
   Cpu, 
-  Sparkles,
-  ExternalLink
+  Layers, 
+  CheckCircle,
+  Database,
+  Code2
 } from "lucide-react";
 import { Github, Linkedin } from "./Icons";
 
@@ -19,72 +18,76 @@ export default function Hero() {
   return (
     <section
       id="intro"
-      className="relative min-h-[92vh] flex items-center justify-center px-4 sm:px-6 md:px-12 lg:px-16 pt-28 pb-16 md:pt-32 md:pb-24 overflow-hidden"
+      className="relative min-h-[90vh] flex items-center justify-center px-4 sm:px-6 md:px-12 lg:px-16 pt-24 pb-16 md:pt-28 md:pb-20 overflow-hidden"
     >
-      <div className="relative max-w-6xl w-full mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <div className="relative max-w-7xl w-full mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           
-          {/* Left Column: Headline, Bio & Action Buttons (7 cols) */}
+          {/* Left Column: Hero Typography & Pitch (7 cols) */}
           <div className="lg:col-span-7 flex flex-col items-start text-left z-10">
-            <AnimatedSection direction="up" delay={50}>
-              {/* Eyebrow Status Pill */}
-              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/25 text-xs font-medium text-indigo-400 mb-6 backdrop-blur-md">
-                <span className="beacon-dot" />
-                <span className="text-[12px] font-mono-code font-semibold">Java Fullstack Developer</span>
-                <span className="text-indigo-400/50">&middot;</span>
-                <span className="text-[11px] text-[var(--text-secondary)]">Open for Opportunities</span>
+            <AnimatedSection direction="up" delay={40}>
+              {/* Technical System Status Tag */}
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[var(--bg-surface)] border-2 border-[var(--border-color)] font-mono-code text-xs mb-6 shadow-[3px_3px_0px_var(--border-color)]">
+                <span className="w-2.5 h-2.5 bg-[var(--accent-lime)] border border-black inline-block animate-pulse" />
+                <span className="text-[var(--text-main)] font-bold">[ SYSTEM SPEC : OPEN_FOR_HIRE ]</span>
+                <span className="text-[var(--text-muted)]">&middot; IN-MH</span>
               </div>
             </AnimatedSection>
 
-            <AnimatedSection direction="up" delay={120}>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] text-[var(--text-primary)]">
-                Building robust backends with{" "}
-                <span className="text-gradient-electric block mt-1">
-                  modern React interfaces.
+            <AnimatedSection direction="up" delay={100}>
+              <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tighter leading-[0.98] text-[var(--text-main)] uppercase">
+                Vishwajit<br />
+                <span className="inline-block bg-[var(--accent-lime)] text-[#0C0D0E] px-3 py-0.5 mt-1 border-2 border-black transform -rotate-1 shadow-[4px_4px_0px_#FFFFFF]">
+                  Sutar.
                 </span>
               </h1>
             </AnimatedSection>
 
-            <AnimatedSection direction="up" delay={180}>
-              <p className="mt-6 text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed max-w-xl">
-                Hi, I'm <strong className="text-[var(--text-primary)] font-semibold">Vishwajit Sutar</strong>. 
-                I engineer dependable Java &amp; Spring Boot micro-services paired with lightning-fast React applications. 
-                Passionate about system architecture, API reliability, and crisp user experiences.
+            <AnimatedSection direction="up" delay={160}>
+              <h2 className="text-xl sm:text-2xl font-mono-code font-bold text-[var(--text-main)] mt-6 tracking-tight flex items-center gap-2">
+                <span className="text-[var(--accent-lime)]">&gt;</span> Java Fullstack &amp; Backend Engineer
+              </h2>
+            </AnimatedSection>
+
+            <AnimatedSection direction="up" delay={220}>
+              <p className="mt-4 text-base sm:text-lg text-[var(--text-muted)] leading-relaxed max-w-xl">
+                Engineering zero-nonsense Java microservices paired with razor-sharp React interfaces. 
+                Obsessed with high-throughput backend architecture, resilient API contracts, and clean software craft.
               </p>
             </AnimatedSection>
 
-            <AnimatedSection direction="up" delay={240}>
-              {/* Tech Stack Highlights */}
-              <div className="flex flex-wrap items-center gap-2 mt-6">
-                <span className="text-xs font-mono-code uppercase text-[var(--text-muted)] mr-2">Core:</span>
+            <AnimatedSection direction="up" delay={280}>
+              {/* Hardware Spec Tags */}
+              <div className="flex flex-wrap items-center gap-2 mt-6 font-mono-code text-xs">
+                <span className="text-[var(--text-dim)] uppercase font-bold mr-1">STACK:</span>
                 {[
                   "Java 17+",
-                  "Spring Boot",
+                  "Spring Boot 3",
                   "React 19",
-                  "Vite",
-                  "RESTful APIs",
                   "MySQL",
                   "MongoDB",
-                ].map((tech) => (
+                  "RESTful APIs",
+                  "C++ DSA",
+                ].map((item) => (
                   <span
-                    key={tech}
-                    className="px-2.5 py-1 rounded-lg text-xs font-mono-code bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-indigo-500/40 hover:text-[var(--text-primary)] transition"
+                    key={item}
+                    className="px-2.5 py-1 bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-main)] hover:border-[var(--accent-lime)] hover:text-[var(--accent-lime)] transition"
                   >
-                    {tech}
+                    {item}
                   </span>
                 ))}
               </div>
             </AnimatedSection>
 
-            <AnimatedSection direction="up" delay={300}>
-              {/* CTAs & Social Links */}
+            <AnimatedSection direction="up" delay={340}>
+              {/* Action Buttons with Hard Shadows */}
               <div className="flex flex-wrap items-center gap-4 mt-8 w-full sm:w-auto">
                 <a
                   href="#projects"
-                  className="btn-electric flex-1 sm:flex-none text-center cursor-pointer group"
+                  className="btn-brutal-lime flex-1 sm:flex-none text-center"
                 >
-                  Explore Projects
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  <span>Explore Builds</span>
+                  <ArrowRight className="w-4 h-4 stroke-[3]" />
                 </a>
 
                 <a
@@ -92,20 +95,20 @@ export default function Hero() {
                   download="Vishwajit_Sutar_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-glass flex-1 sm:flex-none text-center cursor-pointer group"
+                  className="btn-brutal-mono flex-1 sm:flex-none text-center"
                 >
-                  <Download className="w-4 h-4 text-indigo-400 transition-transform group-hover:-translate-y-0.5" />
-                  Download CV
+                  <Download className="w-4 h-4 stroke-[2.5]" />
+                  <span>Resume.pdf</span>
                 </a>
 
-                {/* Social Quick-Actions */}
+                {/* Keycap Social Buttons */}
                 <div className="flex items-center gap-2 pt-2 sm:pt-0">
                   <a
                     href="https://github.com/VishwajitS7"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-11 h-11 rounded-xl flex items-center justify-center border border-[var(--border-subtle)] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-elevated)] hover:border-indigo-500/40 text-[var(--text-secondary)] hover:text-white transition cursor-pointer"
-                    aria-label="GitHub profile"
+                    className="w-11 h-11 bg-[var(--bg-surface)] border-2 border-[var(--border-color)] hover:border-[var(--accent-lime)] hover:bg-[var(--accent-lime)] hover:text-black flex items-center justify-center text-[var(--text-main)] transition shadow-[3px_3px_0px_var(--border-color)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none"
+                    aria-label="GitHub"
                   >
                     <Github className="w-5 h-5" />
                   </a>
@@ -114,138 +117,90 @@ export default function Hero() {
                     href="https://www.linkedin.com/in/vishwajit-sutar-03324b2b0/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-11 h-11 rounded-xl flex items-center justify-center border border-[var(--border-subtle)] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-elevated)] hover:border-indigo-500/40 text-[var(--text-secondary)] hover:text-white transition cursor-pointer"
-                    aria-label="LinkedIn profile"
+                    className="w-11 h-11 bg-[var(--bg-surface)] border-2 border-[var(--border-color)] hover:border-[var(--accent-lime)] hover:bg-[var(--accent-lime)] hover:text-black flex items-center justify-center text-[var(--text-main)] transition shadow-[3px_3px_0px_var(--border-color)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none"
+                    aria-label="LinkedIn"
                   >
                     <Linkedin className="w-5 h-5" />
-                  </a>
-
-                  <a
-                    href="mailto:vishu31103@gmail.com"
-                    className="w-11 h-11 rounded-xl flex items-center justify-center border border-[var(--border-subtle)] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-elevated)] hover:border-indigo-500/40 text-[var(--text-secondary)] hover:text-white transition cursor-pointer"
-                    aria-label="Email Vishwajit"
-                  >
-                    <Mail className="w-5 h-5" />
                   </a>
                 </div>
               </div>
             </AnimatedSection>
           </div>
 
-          {/* Right Column: Linear Bento Developer Card (5 cols) */}
+          {/* Right Column: Neo-Brutalist Developer Spec Chassis (5 cols) */}
           <div className="lg:col-span-5 w-full">
             <AnimatedSection direction="left" delay={200}>
-              <div className="linear-card linear-card-accent p-6 sm:p-7 relative overflow-hidden group">
-                {/* Ambient glow in card background */}
-                <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
-
-                {/* Card Terminal Header */}
-                <div className="flex items-center justify-between pb-4 mb-6 border-b border-[var(--border-subtle)] font-mono-code text-xs text-[var(--text-muted)]">
+              <div className="brutal-card p-6 relative border-2 border-[var(--border-color)] shadow-[6px_6px_0px_0px_var(--border-color)] hover:shadow-[8px_8px_0px_0px_#CCFF00]">
+                
+                {/* Chassis Header Bar */}
+                <div className="flex items-center justify-between pb-3 mb-5 border-b-2 border-[var(--border-color)] font-mono-code text-xs">
                   <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
-                    <span className="ml-2 text-[11px] text-[var(--text-secondary)]">developer.config.json</span>
+                    <span className="w-3 h-3 bg-[var(--accent-lime)] border border-black inline-block" />
+                    <span className="font-bold text-[var(--text-main)]">ENGINEERING SPEC // 01</span>
                   </div>
-                  <span className="text-[10px] uppercase tracking-wider text-indigo-400">ONLINE</span>
+                  <span className="text-[var(--text-muted)] font-bold">[REV: 2026]</span>
                 </div>
 
-                {/* Profile Header within Bento */}
-                <div className="flex items-center gap-5 mb-6">
+                {/* Profile Identity Bar */}
+                <div className="flex items-start gap-4 mb-5">
                   <div className="relative flex-shrink-0">
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border-2 border-indigo-500/40 shadow-xl bg-indigo-950/40 p-0.5">
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 border-2 border-[var(--border-color)] bg-[var(--bg-surface)] overflow-hidden shadow-[3px_3px_0px_var(--border-color)]">
                       {!imageLoaded && (
-                        <div className="w-full h-full rounded-xl bg-indigo-900/30 animate-pulse" />
+                        <div className="w-full h-full bg-neutral-800 animate-pulse" />
                       )}
                       <img
                         src="/profile.jpg"
                         alt="Vishwajit Sutar"
                         onLoad={() => setImageLoaded(true)}
-                        className={`w-full h-full object-cover rounded-xl transition-opacity duration-300 ${
+                        className={`w-full h-full object-cover transition-opacity duration-200 ${
                           imageLoaded ? "opacity-100" : "opacity-0"
                         }`}
                       />
                     </div>
-                    {/* Status badge on avatar */}
-                    <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[var(--bg-elevated)] border border-[var(--border-subtle)] flex items-center justify-center">
-                      <span className="w-2.5 h-2.5 rounded-full bg-[var(--accent-emerald)] animate-pulse" />
-                    </div>
                   </div>
 
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-xl font-bold tracking-tight text-[var(--text-primary)] truncate">
+                  <div className="flex-1 min-w-0 font-mono-code">
+                    <div className="inline-block px-1.5 py-0.5 bg-[var(--accent-lime)] text-black text-[10px] font-black uppercase mb-1">
+                      Fullstack Dev
+                    </div>
+                    <h3 className="text-xl font-bold font-display text-[var(--text-main)] tracking-tight truncate">
                       Vishwajit Sutar
                     </h3>
-                    <p className="text-xs font-mono-code text-indigo-400 mt-0.5">
-                      @VishwajitS7 &middot; India
+                    <p className="text-xs text-[var(--text-muted)] mt-0.5">
+                      github.com/VishwajitS7
                     </p>
-                    <p className="text-xs text-[var(--text-muted)] mt-1.5 flex items-center gap-1.5">
-                      <Cpu className="w-3.5 h-3.5 text-cyan-400" />
-                      B.Tech CSE &middot; CGPA: 9.24
-                    </p>
-                  </div>
-                </div>
-
-                {/* Live Code/Key Metrics Matrix */}
-                <div className="grid grid-cols-2 gap-3 mb-6">
-                  <div className="p-3.5 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-subtle)]">
-                    <p className="text-[10px] font-mono-code uppercase tracking-wider text-[var(--text-muted)]">
-                      Experience
-                    </p>
-                    <p className="text-lg font-bold text-[var(--text-primary)] mt-0.5">
-                      1+ Year
-                    </p>
-                    <p className="text-[11px] text-[var(--text-secondary)] mt-0.5">
-                      Backend &amp; React
-                    </p>
-                  </div>
-
-                  <div className="p-3.5 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-subtle)]">
-                    <p className="text-[10px] font-mono-code uppercase tracking-wider text-[var(--text-muted)]">
-                      Academic Metric
-                    </p>
-                    <p className="text-lg font-bold text-indigo-400 mt-0.5">
-                      9.24 CGPA
-                    </p>
-                    <p className="text-[11px] text-[var(--text-secondary)] mt-0.5">
-                      Top Performer
-                    </p>
-                  </div>
-
-                  <div className="p-3.5 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-subtle)]">
-                    <p className="text-[10px] font-mono-code uppercase tracking-wider text-[var(--text-muted)]">
-                      Leadership
-                    </p>
-                    <p className="text-lg font-bold text-cyan-400 mt-0.5">
-                      President
-                    </p>
-                    <p className="text-[11px] text-[var(--text-secondary)] mt-0.5">
-                      Oyster Kode Club
-                    </p>
-                  </div>
-
-                  <div className="p-3.5 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-subtle)]">
-                    <p className="text-[10px] font-mono-code uppercase tracking-wider text-[var(--text-muted)]">
-                      Shipped Builds
-                    </p>
-                    <p className="text-lg font-bold text-emerald-400 mt-0.5">
-                      5+ Projects
-                    </p>
-                    <p className="text-[11px] text-[var(--text-secondary)] mt-0.5">
-                      Fullstack &amp; APIs
+                    <p className="text-xs text-[var(--accent-lime)] font-bold mt-1">
+                      CGPA: 9.24 / 10 &middot; B.Tech CSE
                     </p>
                   </div>
                 </div>
 
-                {/* Monospace Quick Status Console */}
-                <div className="p-3 rounded-xl bg-[var(--bg-surface)]/80 border border-[var(--border-subtle)] font-mono-code text-[11px]">
-                  <div className="flex items-center justify-between text-[var(--text-muted)]">
-                    <span>$ curl api.vishwajit.dev/status</span>
-                    <span className="text-emerald-400">200 OK</span>
+                {/* Technical Ledger Matrix */}
+                <div className="border-t-2 border-[var(--border-color)] pt-4 space-y-2.5 font-mono-code text-xs">
+                  <div className="flex items-center justify-between p-2 bg-[var(--bg-surface)] border border-[var(--border-color)]">
+                    <span className="text-[var(--text-muted)]">BACKEND ENGINE:</span>
+                    <span className="text-[var(--text-main)] font-bold">Java 17 &bull; Spring Boot</span>
                   </div>
-                  <div className="text-[var(--text-secondary)] mt-1.5 text-[11px] leading-relaxed">
-                    &gt; "Ready to engineer high-velocity systems for your team."
+
+                  <div className="flex items-center justify-between p-2 bg-[var(--bg-surface)] border border-[var(--border-color)]">
+                    <span className="text-[var(--text-muted)]">WEB INTERFACE:</span>
+                    <span className="text-[var(--text-main)] font-bold">React 19 &bull; Vite &bull; Tailwind</span>
                   </div>
+
+                  <div className="flex items-center justify-between p-2 bg-[var(--bg-surface)] border border-[var(--border-color)]">
+                    <span className="text-[var(--text-muted)]">PERSISTENCE:</span>
+                    <span className="text-[var(--text-main)] font-bold">MySQL &bull; MongoDB</span>
+                  </div>
+
+                  <div className="flex items-center justify-between p-2 bg-[var(--bg-surface)] border border-[var(--border-color)]">
+                    <span className="text-[var(--text-muted)]">LEADERSHIP ROLE:</span>
+                    <span className="text-[var(--accent-lime)] font-bold">President @ Oyster Kode</span>
+                  </div>
+                </div>
+
+                {/* Architectural Statement Footer */}
+                <div className="mt-4 p-3 bg-[var(--bg-surface)] border-2 border-dashed border-[var(--border-color)] font-mono-code text-[11px] text-[var(--text-muted)] leading-relaxed">
+                  <span className="text-[var(--accent-lime)] font-bold">// PHILOSOPHY:</span> "Clean APIs, strong typings, zero boilerplate bottlenecks."
                 </div>
 
               </div>

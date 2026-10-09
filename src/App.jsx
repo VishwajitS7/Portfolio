@@ -41,9 +41,9 @@ export default function App() {
   };
 
   return (
-    <div className="relative min-h-screen text-[var(--text-primary)] transition-colors duration-300">
-      {/* Ambient background mesh and top glow */}
-      <div className="ambient-canvas" aria-hidden="true" />
+    <div className="relative min-h-screen text-[var(--text-main)] transition-colors duration-200">
+      {/* Blueprint Grid Canvas */}
+      <div className="brutal-grid-canvas" aria-hidden="true" />
 
       <Navbar theme={theme} onToggleTheme={toggleTheme} />
 
@@ -51,6 +51,40 @@ export default function App() {
       <div id="about">
         <Hero />
       </div>
+
+      {/* Technical Ticker Tape */}
+      <div className="relative border-y-2 border-[var(--border-color)] bg-[var(--bg-surface)] py-2.5 overflow-hidden font-mono-code text-xs font-bold uppercase tracking-widest text-[var(--text-muted)] select-none">
+        <div className="marquee-track flex gap-8 items-center">
+          {[
+            "// STACK: JAVA 17+",
+            "SPRING BOOT 3",
+            "REACT 19",
+            "MICROSERVICES",
+            "REST API CONTRACTS",
+            "MYSQL & MONGO PERSISTENCE",
+            "DSA IN C++",
+            "PRESIDENT @ OYSTER KODE CLUB",
+            "9.24 CGPA",
+            "OPEN FOR FULLTIME ROLES",
+            "// STACK: JAVA 17+",
+            "SPRING BOOT 3",
+            "REACT 19",
+            "MICROSERVICES",
+            "REST API CONTRACTS",
+            "MYSQL & MONGO PERSISTENCE",
+            "DSA IN C++",
+            "PRESIDENT @ OYSTER KODE CLUB",
+            "9.24 CGPA",
+            "OPEN FOR FULLTIME ROLES",
+          ].map((item, idx) => (
+            <span key={idx} className="flex items-center gap-3">
+              <span className="text-[var(--accent-lime)] font-extrabold">&bull;</span>
+              <span>{item}</span>
+            </span>
+          ))}
+        </div>
+      </div>
+
       <Leadership />
       <Skills />
       <Certifications />

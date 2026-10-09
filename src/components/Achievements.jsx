@@ -5,113 +5,129 @@ import {
   GraduationCap, 
   Palette, 
   Code2, 
-  Sparkles, 
-  Award,
-  Zap
+  Zap 
 } from "lucide-react";
 
 export default function Achievements() {
   const milestones = [
     {
+      code: "01",
       icon: GraduationCap,
       title: "9.24 CGPA Academic Excellence",
-      desc: "Maintained a consistent top percentile rank throughout B.Tech Computer Science and Engineering curriculum.",
+      desc: "Maintained top-tier academic performance throughout B.Tech CSE, ranking in the premier departmental bracket.",
       year: "2024",
-      badge: "Academics",
-      badgeColor: "text-indigo-400 bg-indigo-500/10 border-indigo-500/20",
+      badge: "ACADEMICS",
+      highlight: true,
     },
     {
+      code: "02",
       icon: Trophy,
       title: "Code 404 Hackathon Finalist",
-      desc: "Competed through multi-stage problem solving, algorithmic challenges, and rapid prototyping rounds.",
+      desc: "Advanced to final rounds in collegiate competitive coding tournament evaluating algorithmic problem-solving speed.",
       year: "2024",
-      badge: "Innovation",
-      badgeColor: "text-violet-400 bg-violet-500/10 border-violet-500/20",
+      badge: "COMPETITION",
+      highlight: false,
     },
     {
+      code: "03",
       icon: Zap,
       title: "Top Performer — Java Programming",
       desc: "Recognized as top talent for exceptional OOP design, backend system implementation, and clean architecture.",
       year: "2024",
-      badge: "Technical Craft",
-      badgeColor: "text-cyan-400 bg-cyan-500/10 border-cyan-500/20",
+      badge: "ENGINEERING",
+      highlight: false,
     },
     {
+      code: "04",
       icon: Code2,
       title: "Fullstack Web Contributor",
-      desc: "Engineered and deployed multiple responsive web applications, integrating modern APIs and persistence layers.",
+      desc: "Architected and delivered multiple responsive web applications integrating robust REST APIs and database layers.",
       year: "2024",
-      badge: "Product Impact",
-      badgeColor: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
+      badge: "DELIVERY",
+      highlight: false,
     },
     {
+      code: "05",
       icon: Target,
       title: "District Level Football Athlete",
       desc: "Represented district-level sports tournaments, honing high-pressure teamwork, discipline, and endurance.",
       year: "2023",
-      badge: "Teamwork & Grit",
-      badgeColor: "text-amber-400 bg-amber-500/10 border-amber-500/20",
+      badge: "ATHLETICS",
+      highlight: false,
     },
     {
+      code: "06",
       icon: Palette,
-      title: "Sketching & Fine Art Recognition",
-      desc: "Awarded regional honors for visual composition, creative drawing, and attention to detail.",
+      title: "Fine Art & Sketching Recognition",
+      desc: "Awarded regional honors for visual composition, creative drawing, and precision craft.",
       year: "2023",
-      badge: "Creativity",
-      badgeColor: "text-pink-400 bg-pink-500/10 border-pink-500/20",
+      badge: "CREATIVITY",
+      highlight: false,
     },
   ];
 
   return (
-    <section id="achievements" className="scroll-mt-24 px-4 sm:px-6 md:px-16 py-16 md:py-24">
-      <div className="max-w-5xl mx-auto">
+    <section id="achievements" className="scroll-mt-20 px-4 sm:px-6 md:px-16 py-16 md:py-24">
+      <div className="max-w-7xl mx-auto">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <AnimatedSection direction="up" delay={50}>
-            <div className="section-tag">
-              <Trophy className="w-3.5 h-3.5" />
-              <span>MILESTONES &amp; RECOGNITION</span>
+        <div className="mb-14">
+          <AnimatedSection direction="up" delay={40}>
+            <div className="section-marker">
+              <span>[ 05 // MILESTONE LOG ]</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[var(--text-primary)]">
-              Impact &amp; Achievements
+            <h2 className="font-display text-4xl sm:text-5xl font-extrabold uppercase tracking-tight text-[var(--text-main)] mt-2">
+              Impact &amp; Milestones
             </h2>
-            <p className="mt-4 text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed">
-              A record of academic discipline, technical competition, and cross-functional leadership.
+            <p className="mt-3 text-base text-[var(--text-muted)] max-w-2xl font-sans">
+              Documented track record across engineering rigor, university competitions, and athletic discipline.
             </p>
           </AnimatedSection>
         </div>
 
-        {/* Milestone Timeline Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-7">
+        {/* Milestone Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
           {milestones.map((m, idx) => {
             const Icon = m.icon;
             return (
-              <AnimatedSection key={idx} direction="up" delay={idx * 70}>
-                <div className="linear-card p-6 h-full flex flex-col justify-between group hover:border-indigo-500/40">
+              <AnimatedSection key={m.code} direction="up" delay={idx * 60}>
+                <div
+                  className={`brutal-card p-6 h-full flex flex-col justify-between border-2 font-mono-code ${
+                    m.highlight ? "border-[var(--accent-lime)]" : "border-[var(--border-color)]"
+                  }`}
+                >
                   <div>
-                    <div className="flex items-center justify-between gap-3 mb-4">
-                      <div className="w-11 h-11 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 group-hover:scale-105 transition-all">
-                        <Icon className="w-5 h-5" />
-                      </div>
-                      
+                    {/* Header */}
+                    <div className="flex items-center justify-between pb-3 mb-4 border-b-2 border-[var(--border-color)]">
                       <div className="flex items-center gap-2">
-                        <span className={`text-[10px] font-mono-code px-2.5 py-0.5 rounded-full border ${m.badgeColor}`}>
+                        <div className="w-8 h-8 bg-[#0C0D0E] border border-[var(--border-color)] flex items-center justify-center text-[var(--accent-lime)]">
+                          <Icon className="w-4 h-4" />
+                        </div>
+                        <span className="text-[10px] text-[var(--text-dim)] font-bold">LOG // {m.code}</span>
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <span className="px-2 py-0.5 text-[9px] font-black uppercase bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-muted)]">
                           {m.badge}
                         </span>
-                        <span className="text-xs font-mono-code font-semibold px-2 py-0.5 rounded-md bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-[var(--text-muted)]">
+                        <span className="px-1.5 py-0.5 text-[9px] font-black uppercase bg-[var(--accent-lime)] text-[#0C0D0E]">
                           {m.year}
                         </span>
                       </div>
                     </div>
 
-                    <h3 className="text-lg font-bold text-[var(--text-primary)] group-hover:text-indigo-400 transition-colors">
+                    <h3 className="font-display text-xl font-bold uppercase tracking-tight text-[var(--text-main)]">
                       {m.title}
                     </h3>
 
-                    <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed mt-2.5">
+                    <p className="text-xs text-[var(--text-muted)] leading-relaxed mt-2.5 font-sans">
                       {m.desc}
                     </p>
+                  </div>
+
+                  <div className="mt-5 pt-3 border-t border-[var(--border-color)] flex items-center justify-between text-[10px] text-[var(--text-dim)]">
+                    <span>RECORD_ID // {m.code}</span>
+                    <span className="text-[var(--accent-lime)] font-bold">[VERIFIED]</span>
                   </div>
                 </div>
               </AnimatedSection>

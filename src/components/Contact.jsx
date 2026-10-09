@@ -4,11 +4,11 @@ import AnimatedSection from "./AnimatedSection";
 import { 
   Mail, 
   Send, 
-  Sparkles, 
   Copy, 
   Check, 
   ArrowUpRight,
-  MessageSquare
+  MessageSquare,
+  Terminal
 } from "lucide-react";
 import { Github, Linkedin } from "./Icons";
 
@@ -89,12 +89,12 @@ export default function Contact({ onShowToast }) {
 
       await emailjs.send(serviceId, templateId, templateParams, publicKey);
 
-      onShowToast?.("Thank you for your message! I'll get back to you soon.", "success");
+      onShowToast?.("Message transmitted successfully! I will respond promptly.", "success");
       setFormData({ name: "", email: "", message: "" });
       setErrors({});
     } catch (error) {
       console.error("Email sending error:", error);
-      onShowToast?.("Something went wrong. Please reach out directly at " + emailAddress, "error");
+      onShowToast?.("Transmission failed. Please reach out directly at " + emailAddress, "error");
     } finally {
       setIsSubmitting(false);
     }
@@ -108,56 +108,58 @@ export default function Contact({ onShowToast }) {
   };
 
   return (
-    <section id="contact" className="scroll-mt-24 px-4 sm:px-6 md:px-16 py-16 md:py-24 relative overflow-hidden">
-      <div className="max-w-5xl mx-auto">
+    <section id="contact" className="scroll-mt-20 px-4 sm:px-6 md:px-16 py-16 md:py-24 relative">
+      <div className="max-w-7xl mx-auto">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <AnimatedSection direction="up" delay={50}>
-            <div className="section-tag">
-              <Mail className="w-3.5 h-3.5" />
-              <span>GET IN TOUCH</span>
+        <div className="mb-14">
+          <AnimatedSection direction="up" delay={40}>
+            <div className="section-marker">
+              <span>[ 06 // DISPATCH CENTER ]</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[var(--text-primary)]">
-              Let's Build Something Together
+            <h2 className="font-display text-4xl sm:text-5xl font-extrabold uppercase tracking-tight text-[var(--text-main)] mt-2">
+              Initialize Direct Transmission
             </h2>
-            <p className="mt-4 text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed">
-              Available for full-time software engineering roles, high-impact backend contracts, and technical discussions.
+            <p className="mt-3 text-base text-[var(--text-muted)] max-w-2xl font-sans">
+              Open for full-time engineering roles, backend systems architecture, and technical discussions.
             </p>
           </AnimatedSection>
         </div>
 
-        {/* Contact Method Quick Cards */}
+        {/* Quick Contact Cards */}
         <AnimatedSection direction="up" delay={100}>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-10 font-mono-code">
             
             {/* Email Card with 1-click copy */}
-            <div className="linear-card p-6 flex flex-col justify-between group hover:border-indigo-500/40">
+            <div className="brutal-card p-5 flex flex-col justify-between border-2 border-[var(--border-color)]">
               <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-11 h-11 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 group-hover:scale-105 transition-all">
-                    <Mail className="w-5 h-5" />
+                <div className="flex items-center justify-between pb-3 mb-3 border-b-2 border-[var(--border-color)]">
+                  <div className="flex items-center gap-2">
+                    <Mail className="w-4 h-4 text-[var(--accent-lime)]" />
+                    <span className="text-xs font-bold text-[var(--text-main)]">DIRECT MAIL</span>
                   </div>
                   <button
                     type="button"
                     onClick={handleCopyEmail}
-                    className="p-1.5 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-indigo-500/40 transition cursor-pointer"
-                    title="Copy email to clipboard"
+                    className="p-1 border border-[var(--border-color)] hover:border-[var(--accent-lime)] text-[var(--text-muted)] hover:text-[var(--text-main)] transition cursor-pointer"
+                    title="Copy email address"
                   >
-                    {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+                    {copied ? <Check className="w-3.5 h-3.5 text-[var(--accent-lime)]" /> : <Copy className="w-3.5 h-3.5" />}
                   </button>
                 </div>
-                <h3 className="text-base font-bold text-[var(--text-primary)]">Email</h3>
-                <p className="text-xs font-mono-code text-[var(--text-secondary)] truncate mt-1">
+                <p className="text-xs text-[var(--text-main)] font-bold truncate">
                   {emailAddress}
+                </p>
+                <p className="text-[11px] text-[var(--text-dim)] mt-1">
+                  Primary Developer Inbox
                 </p>
               </div>
 
               <a
                 href={`mailto:${emailAddress}`}
-                className="mt-5 inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-400 hover:text-indigo-300 transition"
+                className="mt-4 pt-3 border-t border-[var(--border-color)] text-xs font-bold text-[var(--accent-lime)] hover:underline inline-flex items-center gap-1"
               >
-                Send Direct Mail
+                <span>[ OPEN_MAILTO_CLIENT ]</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             </div>
@@ -167,20 +169,26 @@ export default function Contact({ onShowToast }) {
               href="https://www.linkedin.com/in/vishwajit-sutar-03324b2b0/"
               target="_blank"
               rel="noopener noreferrer"
-              className="linear-card p-6 flex flex-col justify-between group hover:border-indigo-500/40 cursor-pointer"
+              className="brutal-card p-5 flex flex-col justify-between border-2 border-[var(--border-color)] cursor-pointer"
             >
               <div>
-                <div className="w-11 h-11 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 group-hover:scale-105 transition-all mb-4">
-                  <Linkedin className="w-5 h-5" />
+                <div className="flex items-center justify-between pb-3 mb-3 border-b-2 border-[var(--border-color)]">
+                  <div className="flex items-center gap-2">
+                    <Linkedin className="w-4 h-4 text-[var(--accent-lime)]" />
+                    <span className="text-xs font-bold text-[var(--text-main)]">LINKEDIN</span>
+                  </div>
+                  <span className="text-[10px] text-[var(--text-dim)]">[NET]</span>
                 </div>
-                <h3 className="text-base font-bold text-[var(--text-primary)]">LinkedIn</h3>
-                <p className="text-xs text-[var(--text-secondary)] mt-1">
-                  Professional Network &amp; Posts
+                <p className="text-xs text-[var(--text-main)] font-bold truncate">
+                  vishwajit-sutar
+                </p>
+                <p className="text-[11px] text-[var(--text-dim)] mt-1">
+                  Professional Network
                 </p>
               </div>
 
-              <span className="mt-5 inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-400 group-hover:text-indigo-300 transition">
-                Connect on LinkedIn
+              <span className="mt-4 pt-3 border-t border-[var(--border-color)] text-xs font-bold text-[var(--accent-lime)] inline-flex items-center gap-1">
+                <span>[ VIEW_PROFILE ]</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </span>
             </a>
@@ -190,20 +198,26 @@ export default function Contact({ onShowToast }) {
               href="https://github.com/VishwajitS7"
               target="_blank"
               rel="noopener noreferrer"
-              className="linear-card p-6 flex flex-col justify-between group hover:border-indigo-500/40 cursor-pointer"
+              className="brutal-card p-5 flex flex-col justify-between border-2 border-[var(--border-color)] cursor-pointer"
             >
               <div>
-                <div className="w-11 h-11 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 group-hover:scale-105 transition-all mb-4">
-                  <Github className="w-5 h-5" />
+                <div className="flex items-center justify-between pb-3 mb-3 border-b-2 border-[var(--border-color)]">
+                  <div className="flex items-center gap-2">
+                    <Github className="w-4 h-4 text-[var(--accent-lime)]" />
+                    <span className="text-xs font-bold text-[var(--text-main)]">GITHUB</span>
+                  </div>
+                  <span className="text-[10px] text-[var(--text-dim)]">[SRC]</span>
                 </div>
-                <h3 className="text-base font-bold text-[var(--text-primary)]">GitHub</h3>
-                <p className="text-xs text-[var(--text-secondary)] mt-1">
-                  Open Source &amp; Repositories
+                <p className="text-xs text-[var(--text-main)] font-bold truncate">
+                  @VishwajitS7
+                </p>
+                <p className="text-[11px] text-[var(--text-dim)] mt-1">
+                  Public Repositories &amp; Commits
                 </p>
               </div>
 
-              <span className="mt-5 inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-400 group-hover:text-indigo-300 transition">
-                Explore Codebase
+              <span className="mt-4 pt-3 border-t border-[var(--border-color)] text-xs font-bold text-[var(--accent-lime)] inline-flex items-center gap-1">
+                <span>[ VIEW_REPOSITORIES ]</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </span>
             </a>
@@ -211,30 +225,26 @@ export default function Contact({ onShowToast }) {
           </div>
         </AnimatedSection>
 
-        {/* Message Form Card */}
-        <AnimatedSection direction="up" delay={200}>
-          <div className="linear-card linear-card-accent p-8 sm:p-10">
+        {/* Message Form Terminal */}
+        <AnimatedSection direction="up" delay={180}>
+          <div className="brutal-card p-6 sm:p-10 border-2 border-[var(--border-color)]">
             <div className="max-w-2xl mx-auto">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-9 h-9 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
-                  <MessageSquare className="w-4 h-4" />
+              
+              {/* Form Terminal Bar */}
+              <div className="flex items-center justify-between pb-4 mb-6 border-b-2 border-[var(--border-color)] font-mono-code text-xs">
+                <div className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 bg-[var(--accent-lime)] border border-black inline-block" />
+                  <span className="font-bold text-[var(--text-main)]">DISPATCH TERMINAL // PAYLOAD_FORM</span>
                 </div>
-                <div>
-                  <h3 className="text-xl font-bold text-[var(--text-primary)]">
-                    Send a Message
-                  </h3>
-                  <p className="text-xs text-[var(--text-secondary)]">
-                    Leave your contact details and project requirements below.
-                  </p>
-                </div>
+                <span className="text-[var(--text-muted)]">[ENCRYPTED]</span>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-5 font-mono-code">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   {/* Name Input */}
                   <div>
-                    <label htmlFor="name" className="block text-xs font-mono-code font-semibold uppercase text-[var(--text-secondary)] mb-2">
-                      Your Name
+                    <label htmlFor="name" className="block text-xs font-bold uppercase text-[var(--text-main)] mb-2">
+                      [ SENDER_NAME ]
                     </label>
                     <input
                       type="text"
@@ -243,21 +253,21 @@ export default function Contact({ onShowToast }) {
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="Jane Doe"
-                      className={`w-full px-4 py-3 rounded-xl bg-[var(--bg-surface)] border text-[var(--text-primary)] placeholder-[var(--text-muted)] text-sm transition focus:outline-none focus:ring-2 focus:ring-indigo-500/40 ${
+                      className={`w-full px-4 py-3 bg-[var(--bg-surface)] border-2 text-[var(--text-main)] placeholder-[var(--text-dim)] text-xs font-mono-code transition focus:outline-none focus:border-[var(--accent-lime)] ${
                         errors.name
-                          ? "border-red-500/60 focus:border-red-500"
-                          : "border-[var(--border-subtle)] focus:border-indigo-500"
+                          ? "border-red-500"
+                          : "border-[var(--border-color)]"
                       }`}
                     />
                     {errors.name && (
-                      <p className="text-red-400 text-xs mt-1.5">{errors.name}</p>
+                      <p className="text-red-400 text-[11px] mt-1.5">{errors.name}</p>
                     )}
                   </div>
 
                   {/* Email Input */}
                   <div>
-                    <label htmlFor="email" className="block text-xs font-mono-code font-semibold uppercase text-[var(--text-secondary)] mb-2">
-                      Your Email
+                    <label htmlFor="email" className="block text-xs font-bold uppercase text-[var(--text-main)] mb-2">
+                      [ SENDER_EMAIL ]
                     </label>
                     <input
                       type="email"
@@ -266,22 +276,22 @@ export default function Contact({ onShowToast }) {
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="jane@company.com"
-                      className={`w-full px-4 py-3 rounded-xl bg-[var(--bg-surface)] border text-[var(--text-primary)] placeholder-[var(--text-muted)] text-sm transition focus:outline-none focus:ring-2 focus:ring-indigo-500/40 ${
+                      className={`w-full px-4 py-3 bg-[var(--bg-surface)] border-2 text-[var(--text-main)] placeholder-[var(--text-dim)] text-xs font-mono-code transition focus:outline-none focus:border-[var(--accent-lime)] ${
                         errors.email
-                          ? "border-red-500/60 focus:border-red-500"
-                          : "border-[var(--border-subtle)] focus:border-indigo-500"
+                          ? "border-red-500"
+                          : "border-[var(--border-color)]"
                       }`}
                     />
                     {errors.email && (
-                      <p className="text-red-400 text-xs mt-1.5">{errors.email}</p>
+                      <p className="text-red-400 text-[11px] mt-1.5">{errors.email}</p>
                     )}
                   </div>
                 </div>
 
                 {/* Message Input */}
                 <div>
-                  <label htmlFor="message" className="block text-xs font-mono-code font-semibold uppercase text-[var(--text-secondary)] mb-2">
-                    Message
+                  <label htmlFor="message" className="block text-xs font-bold uppercase text-[var(--text-main)] mb-2">
+                    [ MESSAGE_PAYLOAD ]
                   </label>
                   <textarea
                     id="message"
@@ -289,33 +299,32 @@ export default function Contact({ onShowToast }) {
                     rows="5"
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Tell me about the engineering problem, timeline, or team role..."
-                    className={`w-full px-4 py-3 rounded-xl bg-[var(--bg-surface)] border text-[var(--text-primary)] placeholder-[var(--text-muted)] text-sm transition resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500/40 ${
+                    placeholder="Specify project requirements, team role, or engineering discussion topic..."
+                    className={`w-full px-4 py-3 bg-[var(--bg-surface)] border-2 text-[var(--text-main)] placeholder-[var(--text-dim)] text-xs font-mono-code transition resize-none focus:outline-none focus:border-[var(--accent-lime)] ${
                       errors.message
-                        ? "border-red-500/60 focus:border-red-500"
-                        : "border-[var(--border-subtle)] focus:border-indigo-500"
+                        ? "border-red-500"
+                        : "border-[var(--border-color)]"
                     }`}
                   />
                   {errors.message && (
-                    <p className="text-red-400 text-xs mt-1.5">{errors.message}</p>
+                    <p className="text-red-400 text-[11px] mt-1.5">{errors.message}</p>
                   )}
                 </div>
 
-                {/* Submit CTA */}
+                {/* Transmit Button */}
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="btn-electric w-full py-3.5 text-sm cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed group"
+                  className="btn-brutal-lime w-full py-4 text-xs tracking-wider cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
                     <span className="flex items-center gap-2">
-                      <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                      Sending Message...
+                      <span className="w-3.5 h-3.5 border-2 border-black border-t-transparent rounded-full animate-spin" />
+                      TRANSMITTING PAYLOAD...
                     </span>
                   ) : (
                     <span className="flex items-center gap-2">
-                      Send Message
-                      <Send className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                      [ TRANSMIT MESSAGE &rarr; ]
                     </span>
                   )}
                 </button>

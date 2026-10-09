@@ -1,195 +1,170 @@
+import { useState } from "react";
 import AnimatedSection from "./AnimatedSection";
-import { Server, Layout, Database, Wrench, Cloud, Binary, Sparkles, Layers } from "lucide-react";
+import { Server, Layout, Database, Wrench, Terminal, Cpu } from "lucide-react";
 
 export default function Skills() {
-  const categories = [
+  const [hoveredSkill, setHoveredSkill] = useState(null);
+
+  const skillGroups = [
     {
-      id: "backend",
+      code: "01",
+      name: "Backend Core",
       icon: Server,
-      title: "Backend & Systems",
-      badge: "Core Specialization",
-      accent: "from-indigo-500/20 to-indigo-500/5",
-      summary: "High-throughput RESTful services, transactional logic, and scalable architectures.",
       skills: [
-        { name: "Java", icon: "/logos/java.svg", level: "Expert" },
-        { name: "Spring Boot", icon: "/logos/spring.svg", level: "Advanced" },
-        { name: "Node.js", icon: "/logos/nodejs.svg", level: "Advanced" },
-        { name: "Express", icon: "/logos/express.svg", level: "Proficient" },
-        { name: "REST APIs", icon: "/logos/api.svg", level: "Advanced" },
+        { name: "Java 17+", icon: "/logos/java.svg", level: "EXPERT", desc: "Multithreading, Stream APIs, JVM memory model & enterprise patterns" },
+        { name: "Spring Boot 3", icon: "/logos/spring.svg", level: "ADVANCED", desc: "Spring Security, JPA/Hibernate, Actuator, Microservice architecture" },
+        { name: "REST APIs", icon: "/logos/api.svg", level: "ADVANCED", desc: "HTTP status codes, contract design, JWT guards, input validation" },
+        { name: "Node.js", icon: "/logos/nodejs.svg", level: "ADVANCED", desc: "Event loop, asynchronous IO, middleware pipelines, streaming" },
+        { name: "Express", icon: "/logos/express.svg", level: "PROFICIENT", desc: "Routing layers, error interceptors, modular controller design" },
       ],
     },
     {
-      id: "frontend",
+      code: "02",
+      name: "Frontend UI",
       icon: Layout,
-      title: "Frontend Engineering",
-      badge: "Modern Web",
-      accent: "from-cyan-500/20 to-cyan-500/5",
-      summary: "Responsive, accessible, and fast Single Page Applications with clean component state.",
       skills: [
-        { name: "React", icon: "/logos/react.svg", level: "Advanced" },
-        { name: "JavaScript", icon: "/logos/javascript.svg", level: "Advanced" },
-        { name: "Vite", icon: "/logos/vite.svg", level: "Advanced" },
-        { name: "HTML5", icon: "/logos/html5.svg", level: "Expert" },
-        { name: "CSS3", icon: "/logos/css.svg", level: "Expert" },
+        { name: "React 19", icon: "/logos/react.svg", level: "ADVANCED", desc: "Custom hooks, Virtual DOM, state management, SPA component trees" },
+        { name: "JavaScript", icon: "/logos/javascript.svg", level: "ADVANCED", desc: "ES6+, closures, promises, async/await, DOM optimization" },
+        { name: "Vite", icon: "/logos/vite.svg", level: "ADVANCED", desc: "Lightning HMR, rollup chunking, tree-shaking, bundle analyzers" },
+        { name: "HTML5", icon: "/logos/html5.svg", level: "EXPERT", desc: "Semantic layout hierarchy, web accessibility (a11y), SEO standards" },
+        { name: "CSS3 / Tailwind", icon: "/logos/css.svg", level: "EXPERT", desc: "CSS tokens, flexbox/grid architectures, zero-runtime utilities" },
       ],
     },
     {
-      id: "databases",
+      code: "03",
+      name: "Persistence",
       icon: Database,
-      title: "Databases & Storage",
-      badge: "Persistence",
-      accent: "from-emerald-500/20 to-emerald-500/5",
-      summary: "Relational modeling, document collections, schema design, and query optimization.",
       skills: [
-        { name: "MySQL", icon: "/logos/mysql.svg", level: "Advanced" },
-        { name: "MongoDB", icon: "/logos/mongodb.svg", level: "Advanced" },
-        { name: "Firebase", icon: "/logos/firebase.svg", level: "Proficient" },
+        { name: "MySQL", icon: "/logos/mysql.svg", level: "ADVANCED", desc: "Relational modeling, indexing strategies, complex joins, ACID rules" },
+        { name: "MongoDB", icon: "/logos/mongodb.svg", level: "ADVANCED", desc: "BSON documents, aggregation pipelines, replica sets, schema design" },
+        { name: "Firebase", icon: "/logos/firebase.svg", level: "PROFICIENT", desc: "Realtime Database, Firestore rules, authentication, event listeners" },
       ],
     },
     {
-      id: "devops",
-      icon: Cloud,
-      title: "Cloud & Deployment",
-      badge: "Infrastructure",
-      accent: "from-sky-500/20 to-sky-500/5",
-      summary: "Continuous deployment workflows, environment configuration, and serverless hosting.",
-      skills: [
-        { name: "Render", icon: "/logos/render.svg", level: "Advanced" },
-        { name: "Vercel", icon: "/logos/vercel.svg", level: "Advanced" },
-        { name: "Netlify", icon: "/logos/netlify.svg", level: "Proficient" },
-      ],
-    },
-    {
-      id: "tools",
+      code: "04",
+      name: "DevOps & CS",
       icon: Wrench,
-      title: "Engineering Tools",
-      badge: "Productivity",
-      accent: "from-violet-500/20 to-violet-500/5",
-      summary: "Version control hygiene, endpoint contract testing, and developer tooling.",
       skills: [
-        { name: "Git", icon: "/logos/git.svg", level: "Expert" },
-        { name: "GitHub", icon: "/logos/github.svg", level: "Expert" },
-        { name: "Postman", icon: "/logos/postman.svg", level: "Advanced" },
-        { name: "VS Code", icon: "/logos/vscode.svg", level: "Expert" },
-      ],
-    },
-    {
-      id: "cs",
-      icon: Binary,
-      title: "CS Foundations",
-      badge: "Problem Solving",
-      accent: "from-fuchsia-500/20 to-fuchsia-500/5",
-      summary: "Strong fundamentals in algorithmic complexity, memory management, and clean OOP design.",
-      skills: [
-        { name: "DSA in C++", icon: "/logos/dsa.svg", level: "Advanced" },
-        { name: "OOP Concepts", icon: "/logos/oop.svg", level: "Expert" },
+        { name: "Git & GitHub", icon: "/logos/git.svg", level: "EXPERT", desc: "Branching strategies, commit hygiene, pull requests, CI/CD actions" },
+        { name: "Postman", icon: "/logos/postman.svg", level: "ADVANCED", desc: "Contract testing, automated test scripts, mock servers" },
+        { name: "Render & Vercel", icon: "/logos/render.svg", level: "ADVANCED", desc: "Continuous deployment triggers, environment configs, health checks" },
+        { name: "DSA in C++", icon: "/logos/dsa.svg", level: "ADVANCED", desc: "Pointers, dynamic programming, tree/graph algorithms, Big-O" },
+        { name: "OOP Concepts", icon: "/logos/oop.svg", level: "EXPERT", desc: "Encapsulation, Polymorphism, Inheritance, SOLID principles" },
       ],
     },
   ];
 
   return (
-    <section id="skills" className="scroll-mt-24 px-4 sm:px-6 md:px-16 py-16 md:py-24">
-      <div className="max-w-6xl mx-auto">
+    <section id="skills" className="scroll-mt-20 px-4 sm:px-6 md:px-16 py-12 md:py-16">
+      <div className="max-w-7xl mx-auto">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <AnimatedSection direction="up" delay={50}>
-            <div className="section-tag">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>CAPABILITIES &amp; TECH STACK</span>
+        {/* Compact Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+          <div>
+            <div className="section-marker">
+              <span>[ 02 // TECHNICAL STACK ]</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[var(--text-primary)]">
-              Technical Skill Matrix
+            <h2 className="font-display text-3xl sm:text-4xl font-extrabold uppercase tracking-tight text-[var(--text-main)] mt-1">
+              Stack Architecture
             </h2>
-            <p className="mt-4 text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed">
-              Engineered with a strong focus on backend reliability, modern frontend architecture, and disciplined developer tooling.
-            </p>
-          </AnimatedSection>
+          </div>
+
+          <div className="font-mono-code text-xs text-[var(--text-muted)] flex items-center gap-2">
+            <span className="w-2 h-2 bg-[var(--accent-lime)] inline-block" />
+            <span>22 PRODUCTION TOOLS &middot; COMPACT RUNTIME</span>
+          </div>
         </div>
 
-        {/* Bento Grid Categories */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
-          {categories.map((cat, idx) => (
-            <AnimatedSection key={cat.id} direction="up" delay={idx * 60} className="h-full">
-              <SkillCard {...cat} />
-            </AnimatedSection>
-          ))}
-        </div>
+        {/* Compact 4-Column High-Density Grid (All visible at once, no scroll bloat!) */}
+        <AnimatedSection direction="up" delay={50}>
+          <div className="brutal-card p-5 sm:p-6 border-2 border-[var(--border-color)]">
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 font-mono-code">
+              {skillGroups.map((group) => {
+                const IconComponent = group.icon;
+                return (
+                  <div key={group.code} className="flex flex-col">
+                    
+                    {/* Column Header */}
+                    <div className="flex items-center justify-between pb-2 mb-3 border-b-2 border-[var(--border-color)]">
+                      <div className="flex items-center gap-2">
+                        <IconComponent className="w-4 h-4 text-[var(--accent-lime)]" />
+                        <h3 className="text-xs font-bold text-[var(--text-main)] uppercase tracking-wider font-sans">
+                          {group.name}
+                        </h3>
+                      </div>
+                      <span className="text-[10px] text-[var(--text-dim)] font-bold">
+                        // {group.code}
+                      </span>
+                    </div>
+
+                    {/* Skill Badges List */}
+                    <div className="flex flex-col gap-1.5 flex-1">
+                      {group.skills.map((skill) => (
+                        <div
+                          key={skill.name}
+                          onMouseEnter={() => setHoveredSkill(skill)}
+                          onMouseLeave={() => setHoveredSkill(null)}
+                          className="flex items-center justify-between p-2 bg-[var(--bg-surface)] border border-[var(--border-color)] hover:border-[var(--accent-lime)] hover:bg-[var(--accent-lime-dim)] transition-colors cursor-pointer group"
+                        >
+                          <div className="flex items-center gap-2 min-w-0">
+                            <div className="w-5 h-5 p-0.5 bg-[#0C0D0E] border border-[var(--border-color)] flex items-center justify-center flex-shrink-0">
+                              <img
+                                src={skill.icon}
+                                alt={skill.name}
+                                className="w-full h-full object-contain"
+                                onError={(e) => {
+                                  e.currentTarget.style.display = "none";
+                                }}
+                              />
+                            </div>
+                            <span className="text-xs font-bold text-[var(--text-main)] truncate font-sans group-hover:text-[var(--accent-lime)]">
+                              {skill.name}
+                            </span>
+                          </div>
+
+                          <span
+                            className={`text-[9px] px-1.5 py-0.2 font-black uppercase flex-shrink-0 ${
+                              skill.level === "EXPERT"
+                                ? "bg-[var(--accent-lime)] text-black"
+                                : "text-[var(--text-dim)] border border-[var(--border-color)]"
+                            }`}
+                          >
+                            {skill.level === "EXPERT" ? "EXP" : skill.level === "ADVANCED" ? "ADV" : "PRO"}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Interactive Telemetry Inspection Footer */}
+            <div className="mt-5 pt-3 border-t-2 border-[var(--border-color)] flex items-center justify-between font-mono-code text-xs">
+              <div className="flex items-center gap-2 truncate">
+                <Terminal className="w-3.5 h-3.5 text-[var(--accent-lime)] flex-shrink-0" />
+                <span className="text-[var(--text-dim)] font-bold">INSPECTOR:</span>
+                {hoveredSkill ? (
+                  <span className="text-[var(--text-main)] font-semibold truncate">
+                    <strong className="text-[var(--accent-lime)]">[{hoveredSkill.name}]</strong> &gt; {hoveredSkill.desc}
+                  </span>
+                ) : (
+                  <span className="text-[var(--text-dim)]">
+                    Hover any technology to inspect core competencies and specs.
+                  </span>
+                )}
+              </div>
+              <span className="text-[10px] text-[var(--accent-lime)] font-bold flex-shrink-0 hidden sm:inline">
+                READY
+              </span>
+            </div>
+
+          </div>
+        </AnimatedSection>
 
       </div>
     </section>
-  );
-}
-
-function SkillCard(props) {
-  const { title, badge, summary, skills = [] } = props;
-  const IconComponent = props.icon;
-  const levelBadge = {
-    Expert: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
-    Advanced: "text-indigo-400 bg-indigo-500/10 border-indigo-500/20",
-    Proficient: "text-cyan-400 bg-cyan-500/10 border-cyan-500/20",
-  };
-
-  return (
-    <div className="linear-card p-6 h-full flex flex-col justify-between group hover:border-indigo-500/30">
-      <div>
-        {/* Card Header */}
-        <div className="flex items-center justify-between pb-4 mb-4 border-b border-[var(--border-subtle)]">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
-              <IconComponent className="w-5 h-5" />
-            </div>
-            <div>
-              <h3 className="text-base font-bold text-[var(--text-primary)]">
-                {title}
-              </h3>
-              <span className="text-[11px] font-mono-code text-[var(--text-muted)]">
-                {skills.length} tools
-              </span>
-            </div>
-          </div>
-          <span className="text-[10px] font-mono-code uppercase px-2.5 py-1 rounded-md bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-[var(--text-secondary)]">
-            {badge}
-          </span>
-        </div>
-
-        <p className="text-xs text-[var(--text-secondary)] leading-relaxed mb-6">
-          {summary}
-        </p>
-      </div>
-
-      {/* Skills Pill List (No nested scrollbars!) */}
-      <div className="grid grid-cols-2 gap-2.5 mt-auto pt-2">
-        {skills.map((skill, i) => (
-          <div
-            key={i}
-            className="flex items-center gap-2.5 p-2 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] hover:bg-[var(--bg-surface-elevated)] hover:border-indigo-500/30 transition-all"
-          >
-            <div className="w-7 h-7 rounded-lg bg-[var(--bg-elevated)] p-1 flex items-center justify-center flex-shrink-0">
-              <img
-                src={skill.icon}
-                alt={skill.name}
-                className="w-5 h-5 object-contain"
-                onError={(e) => {
-                  e.currentTarget.style.display = "none";
-                }}
-              />
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="text-xs font-semibold text-[var(--text-primary)] truncate">
-                {skill.name}
-              </p>
-              <span
-                className={`inline-block text-[9px] font-mono-code px-1.5 py-0.2 rounded border ${
-                  levelBadge[skill.level] || "text-[var(--text-muted)]"
-                }`}
-              >
-                {skill.level}
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
   );
 }

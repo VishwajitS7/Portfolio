@@ -7,29 +7,27 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['"Space Grotesk"', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['"Syne"', '"Space Grotesk"', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
       },
       colors: {
-        brand: {
-          indigo: "#6366F1",
-          violet: "#8B5CF6",
-          cyan: "#06B6D4",
-          emerald: "#10B981",
+        lime: {
+          DEFAULT: "#CCFF00",
+          pop: "#D4FF00",
+          muted: "#9AE600",
         },
-        void: "#08090C",
-        surface: {
-          base: "#08090C",
-          elevated: "#0E1117",
-          card: "rgba(14, 17, 23, 0.75)",
-          border: "rgba(255, 255, 255, 0.08)",
-          borderHover: "rgba(255, 255, 255, 0.16)",
-        },
+        void: "#0C0D0E",
+        ink: "#141618",
+        carbon: "#1B1E22",
+        steel: "#282C32",
       },
       boxShadow: {
-        glow: "0 0 35px -5px rgba(99, 102, 241, 0.25)",
-        "glow-cyan": "0 0 35px -5px rgba(6, 182, 212, 0.25)",
-        "glow-sm": "0 0 15px -3px rgba(99, 102, 241, 0.3)",
+        brutal: "4px 4px 0px 0px #CCFF00",
+        "brutal-white": "4px 4px 0px 0px #F4F5F6",
+        "brutal-dark": "4px 4px 0px 0px #0C0D0E",
+        "brutal-sm": "2px 2px 0px 0px #CCFF00",
+        "brutal-subtle": "3px 3px 0px 0px rgba(255, 255, 255, 0.12)",
       },
     },
   },
