@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Sun, Moon, Menu, X, Terminal } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Sun, Moon, Menu, X } from "lucide-react";
 
 const navItems = [
   { id: "intro", code: "01", label: "Overview" },
@@ -15,41 +15,143 @@ export default function Navbar({ theme = "dark", onToggleTheme = () => {} }) {
   const [open, setOpen] = useState(false);
   const isLight = theme === "light";
 
+  const isProgrammaticScrollRef = useRef(false);
+  const targetSectionRef = useRef(null);
+  const scrollEndTimerRef = useRef(null);
+
   // Track scroll position for active section
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPos = window.scrollY + 140;
-
-      let currentSection = "intro";
-      navItems.forEach((item) => {
-        const element = document.getElementById(item.id);
-        if (element && element.offsetTop <= scrollPos) {
-          currentSection = item.id;
+      // If a programmatic navigation is currently animating, preserve the target highlight
+      if (isProgrammaticScrollRef.current) {
+        if (targetSectionRef.current) {
+          setActive(targetSectionRef.current);
         }
-      });
+        // Reset the debounce timer on every scroll tick
+        if (scrollEndTimerRef.current) {
+          clearTimeout(scrollEndTimerRef.current);
+        }
+        scrollEndTimerRef.current = setTimeout(() => {
+          isProgrammaticScrollRef.current = false;
+          targetSectionRef.current = null;
+        }, 130);
+        return;
+      }
+
+      // Top of page check: overview is always active when near the top
+      if (window.scrollY < 180) {
+        setActive("intro");
+        return;
+      }
+
+      // Bottom of page check: activates contact when reaching footer area
+      const isAtBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 70;
+
+      if (isAtBottom) {
+        setActive("contact");
+        return;
+      }
+
+      // Reading focal line (140px from top, comfortably below fixed 66px navbar)
+      const targetLine = 140;
+      let currentSection = navItems[0].id;
+
+      for (let i = 0; i < navItems.length; i++) {
+        const item = navItems[i];
+        const el = document.getElementById(item.id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          // Active if top has entered the focal zone and bottom is still below navbar
+          if (rect.top <= targetLine && rect.bottom > 70) {
+            currentSection = item.id;
+          }
+        }
+      }
 
       setActive(currentSection);
     };
 
+    // User manual interaction interrupts programmatic lock immediately
+    const handleManualInterrupt = () => {
+      if (isProgrammaticScrollRef.current) {
+        isProgrammaticScrollRef.current = false;
+        targetSectionRef.current = null;
+        if (scrollEndTimerRef.current) {
+          clearTimeout(scrollEndTimerRef.current);
+        }
+      }
+    };
+
+    const handleScrollEnd = () => {
+      if (isProgrammaticScrollRef.current) {
+        isProgrammaticScrollRef.current = false;
+        targetSectionRef.current = null;
+      }
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scrollend", handleScrollEnd, { passive: true });
+    window.addEventListener("wheel", handleManualInterrupt, { passive: true });
+    window.addEventListener("touchmove", handleManualInterrupt, { passive: true });
+    window.addEventListener("keydown", handleManualInterrupt, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scrollend", handleScrollEnd);
+      window.removeEventListener("wheel", handleManualInterrupt);
+      window.removeEventListener("touchmove", handleManualInterrupt);
+      window.removeEventListener("keydown", handleManualInterrupt);
+      if (scrollEndTimerRef.current) {
+        clearTimeout(scrollEndTimerRef.current);
+      }
+    };
   }, []);
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      // Immediately lock active highlight to clicked item
+      setActive(id);
+      targetSectionRef.current = id;
+      isProgrammaticScrollRef.current = true;
+
+      if (scrollEndTimerRef.current) {
+        clearTimeout(scrollEndTimerRef.current);
+      }
+
+      const offset = 72; // Header is 64px, leaves clean 8px breathing room
+      let offsetPosition = 0;
+
+      if (id === "intro") {
+        offsetPosition = 0;
+      } else {
+        const elementPosition = element.getBoundingClientRect().top;
+        offsetPosition = Math.max(0, elementPosition + window.pageYOffset - offset);
+      }
+
+      // If already at target position, release lock immediately
+      if (Math.abs(window.scrollY - offsetPosition) < 6) {
+        isProgrammaticScrollRef.current = false;
+        targetSectionRef.current = null;
+        return;
+      }
 
       window.scrollTo({
-        top: Math.max(0, offsetPosition),
+        top: offsetPosition,
         behavior: "smooth",
       });
 
       if (window.history && window.history.pushState) {
         window.history.pushState(null, null, `#${id}`);
       }
+
+      // Fallback safety timeout in case no scroll events fire
+      scrollEndTimerRef.current = setTimeout(() => {
+        isProgrammaticScrollRef.current = false;
+        targetSectionRef.current = null;
+      }, 2000);
     }
   };
 
@@ -86,10 +188,8 @@ export default function Navbar({ theme = "dark", onToggleTheme = () => {} }) {
             return (
               <button
                 key={item.id}
-                onClick={() => {
-                  setActive(item.id);
-                  scrollToSection(item.id);
-                }}
+                type="button"
+                onClick={() => scrollToSection(item.id)}
                 className={`px-3 py-1.5 font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
                   isActive
                     ? "bg-[var(--accent-lime)] text-[#0C0D0E] border border-[#0C0D0E] shadow-[2px_2px_0px_#FFFFFF]"
@@ -154,7 +254,6 @@ export default function Navbar({ theme = "dark", onToggleTheme = () => {} }) {
                 key={item.id}
                 type="button"
                 onClick={() => {
-                  setActive(item.id);
                   scrollToSection(item.id);
                   setOpen(false);
                 }}

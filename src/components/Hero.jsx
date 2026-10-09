@@ -45,14 +45,14 @@ export default function Hero() {
 
             <AnimatedSection direction="up" delay={160}>
               <h2 className="text-xl sm:text-2xl font-mono-code font-bold text-[var(--text-main)] mt-6 tracking-tight flex items-center gap-2">
-                <span className="text-[var(--accent-lime)]">&gt;</span> Java Fullstack &amp; Backend Engineer
+                <span className="text-[var(--accent-lime)]">&gt;</span> Fullstack &amp; Software Systems Engineer
               </h2>
             </AnimatedSection>
 
             <AnimatedSection direction="up" delay={220}>
               <p className="mt-4 text-base sm:text-lg text-[var(--text-muted)] leading-relaxed max-w-xl">
-                Engineering zero-nonsense Java microservices paired with razor-sharp React interfaces. 
-                Obsessed with high-throughput backend architecture, resilient API contracts, and clean software craft.
+                Engineering resilient backends in Java, Go &amp; Node, paired with production Next.js and React interfaces. 
+                Focused on scalable cloud architecture, type-safe API contracts, and modern AI pipelines.
               </p>
             </AnimatedSection>
 
@@ -61,13 +61,16 @@ export default function Hero() {
               <div className="flex flex-wrap items-center gap-2 mt-6 font-mono-code text-xs">
                 <span className="text-[var(--text-dim)] uppercase font-bold mr-1">STACK:</span>
                 {[
-                  "Java 17+",
-                  "Spring Boot 3",
-                  "React 19",
-                  "MySQL",
-                  "MongoDB",
-                  "RESTful APIs",
-                  "C++ DSA",
+                  "Java",
+                  "TypeScript",
+                  "Next.js",
+                  "React",
+                  "Node.js",
+                  "Go",
+                  "PostgreSQL",
+                  "Docker",
+                  "AWS",
+                  "Python AI",
                 ].map((item) => (
                   <span
                     key={item}
@@ -178,18 +181,18 @@ export default function Hero() {
                 {/* Technical Ledger Matrix */}
                 <div className="border-t-2 border-[var(--border-color)] pt-4 space-y-2.5 font-mono-code text-xs">
                   <div className="flex items-center justify-between p-2 bg-[var(--bg-surface)] border border-[var(--border-color)]">
-                    <span className="text-[var(--text-muted)]">BACKEND ENGINE:</span>
-                    <span className="text-[var(--text-main)] font-bold">Java 17 &bull; Spring Boot</span>
+                    <span className="text-[var(--text-muted)]">CORE LANGUAGES:</span>
+                    <span className="text-[var(--text-main)] font-bold">Java &bull; TypeScript &bull; Go &bull; C++</span>
                   </div>
 
                   <div className="flex items-center justify-between p-2 bg-[var(--bg-surface)] border border-[var(--border-color)]">
-                    <span className="text-[var(--text-muted)]">WEB INTERFACE:</span>
-                    <span className="text-[var(--text-main)] font-bold">React 19 &bull; Vite &bull; Tailwind</span>
+                    <span className="text-[var(--text-muted)]">WEB ARCHITECTURE:</span>
+                    <span className="text-[var(--text-main)] font-bold">Next.js &bull; React &bull; Node &bull; Express</span>
                   </div>
 
                   <div className="flex items-center justify-between p-2 bg-[var(--bg-surface)] border border-[var(--border-color)]">
-                    <span className="text-[var(--text-muted)]">PERSISTENCE:</span>
-                    <span className="text-[var(--text-main)] font-bold">MySQL &bull; MongoDB</span>
+                    <span className="text-[var(--text-muted)]">DATA &amp; CLOUD:</span>
+                    <span className="text-[var(--text-main)] font-bold">PostgreSQL &bull; MongoDB &bull; Docker &bull; AWS</span>
                   </div>
 
                   <div className="flex items-center justify-between p-2 bg-[var(--bg-surface)] border border-[var(--border-color)]">

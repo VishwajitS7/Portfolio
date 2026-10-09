@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <path fill="#FCC624" d="M64 12c-19.8 0-36 16.2-36 36 0 9.2 3.5 17.6 9.3 24L32 108h64l-5.3-36c5.8-6.4 9.3-14.8 9.3-24 0-19.8-16.2-36-36-36z"/>
+  <circle cx="52" cy="42" r="5" fill="#000"/>
+  <circle cx="76" cy="42" r="5" fill="#000"/>
+  <path fill="#FFA500" d="M64 54l-8 12h16z"/>
+</svg>

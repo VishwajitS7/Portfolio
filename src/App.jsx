@@ -56,23 +56,31 @@ export default function App() {
       <div className="relative border-y-2 border-[var(--border-color)] bg-[var(--bg-surface)] py-2.5 overflow-hidden font-mono-code text-xs font-bold uppercase tracking-widest text-[var(--text-muted)] select-none">
         <div className="marquee-track flex gap-8 items-center">
           {[
-            "// STACK: JAVA 17+",
-            "SPRING BOOT 3",
-            "REACT 19",
-            "MICROSERVICES",
-            "REST API CONTRACTS",
-            "MYSQL & MONGO PERSISTENCE",
-            "DSA IN C++",
+            "// STACK: JAVA",
+            "TYPESCRIPT",
+            "NEXT.JS",
+            "REACT",
+            "NODE.JS & EXPRESS",
+            "GO & C++",
+            "POSTGRESQL & MONGO",
+            "DOCKER & AWS",
+            "PRISMA ORM",
+            "REST & OAUTH",
+            "AI & MACHINE LEARNING",
             "PRESIDENT @ OYSTER KODE CLUB",
             "9.24 CGPA",
             "OPEN FOR FULLTIME ROLES",
-            "// STACK: JAVA 17+",
-            "SPRING BOOT 3",
-            "REACT 19",
-            "MICROSERVICES",
-            "REST API CONTRACTS",
-            "MYSQL & MONGO PERSISTENCE",
-            "DSA IN C++",
+            "// STACK: JAVA",
+            "TYPESCRIPT",
+            "NEXT.JS",
+            "REACT",
+            "NODE.JS & EXPRESS",
+            "GO & C++",
+            "POSTGRESQL & MONGO",
+            "DOCKER & AWS",
+            "PRISMA ORM",
+            "REST & OAUTH",
+            "AI & MACHINE LEARNING",
             "PRESIDENT @ OYSTER KODE CLUB",
             "9.24 CGPA",
             "OPEN FOR FULLTIME ROLES",
@@ -87,11 +95,11 @@ export default function App() {
 
       <Leadership />
       <Skills />
-      <Certifications />
-
-      {/* new projects section */}
+      
+      {/* Projects section */}
       <ProjectSection />
-
+      
+      <Certifications />
       <Achievements />
       <Contact onShowToast={showToast} />
       
